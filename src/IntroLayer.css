@@ -1,66 +1,89 @@
-.layer {
-    position: fixed;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 999;
-    background: #a28e8e;
-    background-image: url(images/zlije.png);
-  }
-  
-  .intro-message {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #1a1a1a;
-    font-family: sans-serif;
-  }
-  
-  .intro-message h1 {
-    font-size: 48px;
-    margin-bottom: 10px;
-  }
-  
-  .intro-message p {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .intro-message button {
-    padding: 12px 24px;
-    background-color: #e91e63;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 8px;
-  }
-  
-  .layer::before {
-    content: "";
-    position: absolute;
-    left: -35px;
-    width: 80px;
-    height: 200px;
-  }
-  
-  .layer .plane {
-    position: absolute;
-    top: 0vh;
-    height: 100vh;
-    width: 99.5vh;
-    rotate: 90deg;
-    left: -47.5vh;
-    filter: drop-shadow(0 0 25px #000);
-  }
-  
-  .layer .mr-map {
-    position: absolute;
-    top: 100px;
-    left: 53%;
-    width: 800px;
-    filter: drop-shadow(0 0 10px #fff);
-  }
-  
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+  .layer {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      z-index: 999;
+      background: #a68989;
+      background-image: url(images/zelije.png);
+    }
+    /* body::selection {
+      color: #a28e8e;;
+      background-color: #7c502e;
+    } */
+    .intro-message {
+      position: absolute;
+      top: 50%;
+      left: 45%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-family: sans-serif;
+    }
+    
+    .intro-message h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      font-family: 'Berkshire Swash', cursive;
+      color: #630707;
+      filter: drop-shadow(5px 0 10px #ffffff);
+    }
+    
+    .intro-message p {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+      font-family: 'Berkshire Swash', cursive;      
+      color: #630707;
+      filter: drop-shadow(5px 0 10px #ffffff);
+    }
+    
+    .intro-message button {
+      padding: 12px 30px;
+      border: 2px solid #630707;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 800;
+      border-radius: 50px;
+      font-family: "Berkshire Swash", cursive;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s ease;
+      color: #630707;
+      filter: drop-shadow(5px 0 10px #ffffff);
+      box-shadow: 0 5px 15px rgba(124, 80, 46, 0.2);
+    }
+    
+    .intro-message button:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    
+    .layer::before {
+      content: "";
+      position: absolute;
+      left: -35px;
+      width: 80px;
+      height: 200px;
+    }
+    
+    .layer .plane {
+      position: absolute;
+      top: 0vh;
+      height: 100vh;
+      width: 99.5vh;
+      rotate: 90deg;
+      left: -47.5vh;
+      filter: drop-shadow(0 0 25px #000);
+    }
+    
+    .layer .mr-map {
+      position: absolute;
+      top: 50%;
+      left: 80%;
+      width: 110vh;
+      height: auto;
+      transform: translate(-50%, -50%);
+      filter: drop-shadow(0 0 10px #fff);
+    }
