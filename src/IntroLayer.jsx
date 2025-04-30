@@ -29,22 +29,15 @@ const IntroLayer = () => {
           Travel
         </button>
       </div> */}
-      <motion.img
-        src="images/morocco-map.png"
-        alt="morocco map"
-        className="mr-map"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      />
+      <img src="images/morocco-map.png" alt="morocco map" className="mr-map"/>
       <motion.div
         className="intro-message"
         initial={{ opacity: 0}}
         animate={{ opacity: 1}}
         transition={{ duration: 3}}
       >
-        <h1>Embark on a Flavorful Adventure at <br /> KMO </h1>
-        <p>Through Morocco to the Heart of Africa</p>
+        <h1>Welcome to KM0 </h1>
+        <p>where every flavor begins its journey<br /> from Tangier  Morocco to the heart of Africa</p>
         <motion.button
           id="travelBtn"
           whileHover={{ scale: 1.1 }}
