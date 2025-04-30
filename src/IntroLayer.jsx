@@ -21,6 +21,7 @@ const IntroLayer = () => {
   return (
     <div className="layer">
       <img src="images/avv.png" alt="plane" className="plane" />
+      <img src="images/Trail.png" alt="plane" className="trail" />
       {/* <img src="images/morocco-map.png" alt="morocco map" className="mr-map" />
       <div className="intro-message">
         <h1>Welcome to KM0</h1>
