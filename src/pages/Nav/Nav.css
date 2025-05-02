@@ -4,7 +4,6 @@
   color: black; /* Optional: text color for contrast */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: soft shadow */
 }
-
 .navbar .nav-link {
   font-family: 'Berkshire Swash', cursive;
   color: #630707;

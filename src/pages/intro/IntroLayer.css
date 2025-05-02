@@ -5,7 +5,7 @@
       height: 100vh;
       z-index: 999;
       background: #a68989;
-      background-image: url(images/zelije.png);
+      background-image: url(../../images/zelije.png);
     }
     /* body::selection {
       color: #a28e8e;;

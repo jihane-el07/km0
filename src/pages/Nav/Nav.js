@@ -7,9 +7,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 export default function Nav() {
   return (
     <nav className="navbar navbar-expand-sm">
-      <div className="container-fluid d-flex justify-content-between align-items-center">
+      <div className="container-fluid d-flex justify-content-around align-items-center">
         {/* Left Side Links */}
-        <ul className="navbar-nav d-flex flex-row gap-3">
+        <ul className="navbar-nav left d-flex flex-row gap-3">
           <li className="nav-item">
             <Link className="nav-link  fs-5" to="/">Home</Link>
           </li>
@@ -29,11 +29,11 @@ export default function Nav() {
 
         {/* Centered Logo */}
         <div className="text-center">
-          <img src="images/M.png" alt="morocco map" className="mr-map" width={100} style={{ marginTop: "10px" }} />
+        <Link className="nav-link" to="/"><img src="images/M.png" alt="morocco map" width={100} style={{ marginTop: "10px" }} /></Link>
         </div>
 
         {/* Right Side Links */}
-        <ul className="navbar-nav d-flex flex-row gap-3">
+        <ul className="navbar-nav d-flex flex-row right gap-5">
           <li className="nav-item">
             <Link className="nav-link  fs-5" to="/login">Login</Link>
           </li>
