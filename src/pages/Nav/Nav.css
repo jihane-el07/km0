@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
 .navbar {
   background-color: rgb(255, 255, 255);
-  color: black; /* Optional: text color for contrast */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: soft shadow */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Optional: soft shadow */
   z-index: 11;
 }
 .navbar .nav-link {
-  font-family: 'Berkshire Swash', cursive;
-  color: #630707;
+  font-family: 'Lora', serif;
+  font-weight: 500;
+  color:#630707;
 }
 
 .navbar .nav-link:hover {

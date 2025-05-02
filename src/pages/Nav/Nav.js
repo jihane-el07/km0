@@ -7,7 +7,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 export default function Nav() {
   return (
     <nav className="navbar navbar-expand-sm">
-      <div className="container-fluid d-flex justify-content-around align-items-center">
+      <div className="container-fluid d-flex justify-content-between align-items-center ps-5 pe-5">
         {/* Left Side Links */}
         <ul className="navbar-nav left d-flex flex-row gap-3">
           <li className="nav-item">
@@ -17,10 +17,10 @@ export default function Nav() {
             <Link className="nav-link  fs-5" to="/Event">Event</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link  fs-5" to="/Patissier">Patissier</Link>
+            <Link className="nav-link  fs-5" to="/Patisserie">Patisserie</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link fs-5" to="/Reservation">Menu</Link>
+            <Link className="nav-link fs-5" to="/Menu">Menu</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link  fs-5" to="/contact">Contact Us</Link>

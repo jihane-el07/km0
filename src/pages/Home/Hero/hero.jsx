@@ -1,44 +1,52 @@
 "use client"
 import { useState, useEffect } from "react"
 import "./hero.css"
+import { Link } from "react-router-dom"
 const slides = [
   {
     id: 1,
-    image: "../../../images/1.png?height=1080&width=1920",
-    title: "Welcome to Kudil",
-    subtitle: "Fine Dining Experience",
-    description: "Discover the art of fine dining with our exquisite menu and elegant atmosphere",
+    image: "../../../images/1.png",
+    title: "Celebrate with KM O",
+    subtitle: "Events Designed to Delight",
+    description: "Exceptional catering for unforgettable events",
+    btn: '/Event',
+    btnT: 'View Event',
   },
   {
     id: 2,
-    image: "../../../images/2.png?height=1080&width=1920",
-    title: "Authentic Cuisine",
-    subtitle: "Crafted with Passion",
-    description: "Our chefs prepare each dish with the finest ingredients and traditional techniques",
+    image: "../../../images/2.png",
+    title: "Taste the Tradition",
+    subtitle: "A Symphony of Sweet Heritage",
+    description: "Handcrafted pastries made with passion",
+    btn: '/Event',
+    btnT: 'View Patisserie',
   },
   {
     id: 3,
-    image: "../../../images/3.png?height=1080&width=1920",
-    title: "Special Events",
-    subtitle: "Memorable Celebrations",
-    description: "Host your special occasions in our beautiful venue with personalized service",
+    image: "../../../images/3.png",
+    title: "KM O Café",
+    subtitle: "Where Every Sip Inspires",
+    description: "Your daily retreat for coffee and conversation",
+    btn: '/Event',
+    btnT: 'View Menu',
   },
   {
     id: 4,
-    image: "../../../images/4.png?height=1080&width=1920",
-    title: "Special Events",
-    subtitle: "Memorable Celebrations",
-    description: "Host your special occasions in our beautiful venue with personalized service",
-  },
+    image: "../../../images/4.png",
+    title: "Flavors of Morocco",
+    subtitle: "From Tangier to Your Table",
+    description: "Experience the warmth of Tangier through every bite",
+    btn: '/Event',
+    btnT: 'View Menu',
+  }
 ]
-
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 6000)
+    }, 10000)
     return () => clearInterval(interval)
   }, [])
 
@@ -47,27 +55,21 @@ export default function Hero() {
       {slides.map((slide, index) => (
         <div key={slide.id} className={`slide ${index === currentSlide ? "active-slide" : ""}`}>
           <div className="overlay" />
-          <img
-            src={slide.image || "/placeholder.svg"}
-            alt={slide.title}
-            fill
-            className="slide-image"
-            priority={index === 0}
-          />
-
+            <img
+              src={slide.image || "/placeholder.svg"}
+              alt={slide.title}
+              className="slide-image"
+            />
           <div className="slide-content">
             <div className={`subtitle ${index === currentSlide ? "animate-subtitle" : ""}`}>
               <span>{slide.subtitle}</span>
             </div>
-
             <h1 className={`title ${index === currentSlide ? "animate-title" : ""}`}>{slide.title}</h1>
-
             <p className={`description ${index === currentSlide ? "animate-description" : ""}`}>{slide.description}</p>
-
-            <div className={`button-wrapper ${index === currentSlide ? "animate-button" : ""}`}>
-              <a href="/menu" className="menu-button">
-                View Our Menu
-              </a>
+            <div className="menu-button">
+              <Link to={slide.btn} className="linkk">
+                {slide.btnT}
+              </Link>
             </div>
           </div>
         </div>

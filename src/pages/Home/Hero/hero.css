@@ -4,14 +4,16 @@
   height: 100vh;
   width: 100%;
   overflow: hidden;
-
 }
-
+.linkk{
+  text-decoration: none;
+  color: white;
+}
 .slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 1s ease;
+  transition: opacity 5s ease;
 }
 
 .active-slide {
@@ -21,34 +23,39 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  background-color: #4305057d;
 }
 
 .slide-image {
-  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+
 }
 
 .slide-content {
-  position: relative;
-  z-index: 20;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
   text-align: center;
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 0 1rem;
 }
 
 .subtitle {
-  color: #f59e0b; /* amber-500 */
+  color:  #ffffff; /* amber-500 */
   font-size: 1.125rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
   opacity: 0;
+  font-family: 'Lora', serif;
+  font-weight: 500;
   transform: translateY(20px);
 }
 
@@ -62,6 +69,8 @@
   margin-bottom: 1.5rem;
   opacity: 0;
   transform: translateY(30px);
+  font-family: 'Berkshire Swash', cursive;
+
 }
 
 .animate-title {
@@ -73,6 +82,8 @@
   max-width: 36rem;
   margin-bottom: 2rem;
   opacity: 0;
+  font-family: 'Lora', serif;
+  font-weight: 500;
   transform: translateY(40px);
 }
 
@@ -91,16 +102,18 @@
 
 .menu-button {
   display: inline-block;
-  background-color: #b45309; /* amber-700 */
+  background-color: #630707; /* amber-700 */
   color: white;
   padding: 0.75rem 2rem;
+  z-index: 1;
+  cursor: pointer;
   font-size: 1.125rem;
   border-radius: 0.125rem;
   transition: background-color 0.3s ease;
 }
 
 .menu-button:hover {
-  background-color: #d97706; /* amber-600 */
+  background-color: #7b3131; /* amber-600 */
 }
 
 .slide-indicators {
@@ -125,11 +138,11 @@
 }
 
 .indicator:hover {
-  background-color: white;
+  background-color: #7b3131;
 }
 
 .active-indicator {
-  background-color: #f59e0b; /* amber-500 */
+  background-color:  #630707;
   width: 2.5rem;
 }
 
