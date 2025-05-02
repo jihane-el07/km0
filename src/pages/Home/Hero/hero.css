@@ -117,10 +117,9 @@
 
 .slide-indicators {
   position: absolute;
-  bottom: 2rem;
+  bottom: 5rem;
   left: 0;
   right: 0;
-  z-index: 30;
   display: flex;
   justify-content: center;
   gap: 0.5rem;

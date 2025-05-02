@@ -23,14 +23,6 @@ const IntroLayer = () => {
     <div className="layer">
       <img src="images/avv.png" alt="plane" className="plane" />
       <img src="images/trail.png" alt="plane" className="trail" />
-      {/* <img src="images/morocco-map.png" alt="morocco map" className="mr-map" />
-      <div className="intro-message">
-        <h1>Welcome to KM0</h1>
-        <p>Travel with us and discover Morocco</p>
-        <button id="travelBtn" onClick={handleTravel}>
-          Travel
-        </button>
-      </div> */}
       <img src="images/morocco-map.png" alt="morocco map" className="mr-map"/>
       <motion.div
         className="intro-message"

@@ -1,15 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
 .navbar {
-  background-color: rgb(255, 255, 255);
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Optional: soft shadow */
+  width: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   z-index: 11;
 }
+
+.navbar.scrolled {
+  position: fixed;
+  top: 0;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 .navbar .nav-link {
+  font-family: 'Lora', serif;
+  font-weight: 500;
+  color:#ffffff;
+}
+
+.navbar .nav-link:hover {
+  color: #7b3131;
+}
+.navbar .nav-link.scrolled {
   font-family: 'Lora', serif;
   font-weight: 500;
   color:#630707;
 }
 
-.navbar .nav-link:hover {
+.navbar .nav-link:hover.scrolled {
   color: #7b3131;
 }

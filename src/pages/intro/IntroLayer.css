@@ -6,6 +6,7 @@
       z-index: 999;
       background: #a68989;
       background-image: url(../../images/zelije.png);
+      background-size: 85%;
     }
     /* body::selection {
       color: #a28e8e;;
@@ -32,8 +33,9 @@
       font-size: 2rem;
       font-weight: 900;
       margin-bottom: 20px;
-      font-family: 'Berkshire Swash', cursive;      
       color: #630707;
+      font-family: 'Lora', serif;
+      font-weight: bolder;
       filter: drop-shadow(5px 0 5px #ffffff);
     }
     
