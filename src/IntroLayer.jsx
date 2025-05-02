@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./IntroLayer.css"; // Use this if you're keeping the original CSS
 import { motion } from 'framer-motion';
+
 const IntroLayer = () => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
