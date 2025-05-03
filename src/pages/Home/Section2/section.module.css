@@ -1,0 +1,190 @@
+/* Remove the Google Fonts import */
+ @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&family=Lora:wght@400;500&display=swap"); 
+
+.restaurantContainer {
+  position: absolute;
+  top: 92%;
+  width: 100%;
+  color: #333;
+  text-align: center;
+}
+.header {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 15px;
+}
+
+.arrowDown {
+  cursor: pointer;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+/* Common section styles */
+.historySection,
+.servicesSection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 80px;
+  padding: 40px 5%;
+  gap: 40px;
+}
+
+.servicesSection {
+  flex-direction: row-reverse;
+}
+
+.contentLeft,
+.contentRight {
+  flex: 1;
+  padding: 10px;
+}
+/* Typography */
+.subtitle {
+  font-size: 30px;
+  font-weight: lighter;
+  color: #b06666;
+  margin: 0;
+  line-height: 1.2;
+  font-family: 'Berkshire Swash', cursive;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 5px 0 15px;
+  color: #222;
+  font-family: 'Lora', serif;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
+  font-family: 'Lora', serif;
+  margin-bottom: 30px;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto; 
+  height: 10vh;
+}
+
+
+.line {
+  height: 1px;
+  background-color: #d4c9b0;
+  flex-grow: 1;
+}
+
+.ornament {
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4c9b0' stroke-width='1'%3E%3Cpath d='M12 3L16 12L12 21L8 12L12 3Z'/%3E%3Cpath d='M3 12L12 8L21 12L12 16L3 12Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 10px;
+}
+
+/* Button */
+.btnPrimary {
+  background-color: #630707;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Lora', serif;
+
+}
+
+.btnPrimary:hover {
+  background-color: #7b3131;
+}
+
+/* Image styling */
+.imageFrame1{
+  position: relative;
+  border: 8px solid transparent;
+  border-image: url('/public/images/p1.png') 30 round; 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 60vh;
+}
+.imageFrame2 {
+  position: relative;
+  border: 8px solid transparent;
+  border-image: url('/public/images/p2.png') 30 round; 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 60vh;
+}
+
+.restaurantImage1,
+.restaurantImage2 {
+  position: absolute;
+  right: 2vh;
+  bottom: 2vh;
+  width: 100%;
+  height: 60vh;
+  transition: right 0.5s ease, bottom 0.5s ease;
+}
+
+.imageFrame1:hover,
+.imageFrame2:hover {
+  border: none;
+}
+
+.restaurantImage1:hover,
+.restaurantImage2:hover {
+  right: 0vh;
+  bottom: 0vh;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .historySection,
+  .servicesSection {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .contentLeft,
+  .contentRight {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .subtitle {
+    font-size: 28px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+}

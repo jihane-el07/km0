@@ -1,59 +1,66 @@
-import "./section.css"
+import styles from "./section.module.css"
 
 const RestaurantSection2 = () => {
   return (
-    <div className="restaurant-container">
+    <div className={styles.restaurantContainer}>
+      <div className={styles.header}>
+        <a href="" className={styles.arrowDown}>
+          <svg width="100" height="50" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 10L12 15L17 10" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M7 22L12 27L17 22" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </a>
+      </div>
+
       {/* History Section */}
-      <section className="history-section">
-        <div className="content-left">
-          <h3 className="subtitle font-great-vibes">History of</h3>
-          <h2 className="title font-playfair">Our Restaurant</h2>
-          <div className="divider">
-            <span className="line"></span>
-            <span className="ornament"></span>
-            <span className="line"></span>
+      <div className={styles.historySection}>
+        <div className={styles.contentLeft}>
+          <h3 className={`${styles.subtitle} font-great-vibes`}>The Soul of</h3>
+          <h2 className={`${styles.title} font-playfair`}>Km0 Tangier</h2>
+          <div className={styles.divider}>
+            <span className={styles.line}></span>
+            <span className={styles.ornament}></span>
+            <span className={styles.line}></span>
           </div>
-          <p className="description font-lora">
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
+          <p className={`${styles.description} font-lora`}>
+            Nestled in the heart of Tangier, Km0 is more than just a restaurant—it's a celebration of Moroccan heritage and Mediterranean freshness. From the spice markets of the Medina to the waves of the Atlantic, we draw inspiration from our surroundings to craft seasonal dishes with ingredients sourced within our region. Every meal is a tribute to our land, culture, and people.
           </p>
-          <button className="btn-primary font-lora">Our Story</button>
+          <button className={`${styles.btnPrimary} font-lora`}>Our Story</button>
         </div>
-        <div className="content-right">
-          <div className="image-frame">
+        <div className={styles.contentRight}>
+          <div className={styles.imageFrame1}>
             <img
-              src="/placeholder.svg?height=400&width=500"
-              alt="Restaurant interior with staff serving customers"
-              className="restaurant-image"
+              src="images/p1.png?height=400&width=500"
+              alt="Tangier-style Moroccan restaurant interior"
+              className={styles.restaurantImage1}
             />
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Services Section */}
-      <section className="services-section">
-        <div className="content-left">
-          <div className="image-frame">
+      <section className={styles.servicesSection}>
+        <div className={styles.contentRight}>
+          <h3 className={`${styles.subtitle} font-great-vibes`}>Authentic</h3>
+          <h2 className={`${styles.title} font-playfair`}>Our Experience</h2>
+          <div className={styles.divider}>
+            <span className={styles.line}></span>
+            <span className={styles.ornament}></span>
+            <span className={styles.line}></span>
+          </div>
+          <p className={`${styles.description} font-lora`}>
+            At Km0, we offer a unique culinary journey through northern Morocco. Our menu blends traditional recipes like tagines and zaalouk with modern flair, all made with local, organic ingredients. Whether you're dining in our riad-style interior or enjoying the view of the Kasbah, every visit promises warmth, flavor, and a touch of Tangier’s soul.
+          </p>
+          <button className={`${styles.btnPrimary} font-lora`}>View More</button>
+        </div>
+        <div className={styles.contentLeft}>
+          <div className={styles.imageFrame2}>
             <img
-              src="/placeholder.svg?height=400&width=500"
-              alt="Restaurant storefront with outdoor seating"
-              className="restaurant-image"
+              src="images/p2.png?height=400&width=500"
+              alt="Outdoor Moroccan restaurant with view of Tangier"
+              className={styles.restaurantImage2}
             />
           </div>
-        </div>
-        <div className="content-right">
-          <h3 className="subtitle font-great-vibes">Dedicated</h3>
-          <h2 className="title font-playfair">Our Services</h2>
-          <div className="divider">
-            <span className="line"></span>
-            <span className="ornament"></span>
-            <span className="line"></span>
-          </div>
-          <p className="description font-lora">
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
-          </p>
-          <button className="btn-primary font-lora">View More</button>
         </div>
       </section>
     </div>
