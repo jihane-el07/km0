@@ -1,17 +1,21 @@
 import styles from "./section.module.css"
+import { useRef } from 'react';
 
 const RestaurantSection2 = () => {
+  const historyRef = useRef(null);
+  const scrollToHistory = () => {
+    historyRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
   return (
-    <div className={styles.restaurantContainer}>
+    <div className={styles.restaurantContainer}  id="History" ref={historyRef}>
       <div className={styles.header}>
-        <a href="" className={styles.arrowDown}>
+        <div onClick={scrollToHistory} className={styles.arrowDown} style={{ cursor: 'pointer' }}>
           <svg width="100" height="50" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7 10L12 15L17 10" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M7 22L12 27L17 22" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-        </a>
+        </div>
       </div>
-
       {/* History Section */}
       <div className={styles.historySection}>
         <div className={styles.contentLeft}>

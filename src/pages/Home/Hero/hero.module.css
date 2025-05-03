@@ -137,11 +137,11 @@
 }
 
 .indicator:hover {
-  background-color: #7b3131;
+  background-color: #b06666;
 }
 
 .activeIndicator {
-  background-color: #630707;
+  background-color: #7b3131;
   width: 2.5rem;
 }
 
