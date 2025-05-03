@@ -1,0 +1,138 @@
+/* Remove the Google Fonts import */
+/* @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&family=Lora:wght@400;500&display=swap"); */
+
+.restaurant-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  color: #333;
+}
+
+/* Common section styles */
+.history-section,
+.services-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 80px;
+  gap: 40px;
+}
+
+.services-section {
+  flex-direction: row-reverse;
+}
+
+.content-left,
+.content-right {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Typography */
+.subtitle {
+  font-size: 32px;
+  font-weight: 400;
+  color: #9a8866;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 5px 0 15px;
+  color: #222;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 25px;
+  width: 100%;
+  max-width: 250px;
+}
+
+.line {
+  height: 1px;
+  background-color: #d4c9b0;
+  flex-grow: 1;
+}
+
+.ornament {
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4c9b0' stroke-width='1'%3E%3Cpath d='M12 3L16 12L12 21L8 12L12 3Z'/%3E%3Cpath d='M3 12L12 8L21 12L12 16L3 12Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 10px;
+}
+
+/* Button */
+.btn-primary {
+  background-color: #c9a86b;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+  background-color: #b89659;
+}
+
+/* Image styling */
+.image-frame {
+  position: relative;
+  border: 8px solid #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.restaurant-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s;
+}
+
+.restaurant-image:hover {
+  transform: scale(1.03);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .history-section,
+  .services-section {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .content-left,
+  .content-right {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .subtitle {
+    font-size: 28px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+}

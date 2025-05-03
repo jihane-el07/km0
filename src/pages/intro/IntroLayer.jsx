@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
-import "./IntroLayer.css"; // Use this if you're keeping the original CSS
+import React, { useEffect, useRef } from "react";
+import styles from "./IntroLayer.module.css"; // Updated to use CSS modules
 import { motion } from 'framer-motion';
 
 const IntroLayer = () => {
+  const layerRef = useRef(null);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -11,21 +13,22 @@ const IntroLayer = () => {
   }, []);
 
   const handleTravel = () => {
-    const layer = document.querySelector(".layer");
-    layer.style.transition = "transform 8s ease-in-out";
-    layer.style.transform = "translateX(1000vw)";
-    setTimeout(() => {
-      document.body.style.overflow = "auto";
-    }, 1800);
+    if (layerRef.current) {
+      layerRef.current.style.transition = "transform 8s ease-in-out";
+      layerRef.current.style.transform = "translateX(1000vw)";
+      setTimeout(() => {
+        document.body.style.overflow = "auto";
+      }, 1800);
+    }
   };
 
   return (
-    <div className="layer">
-      <img src="images/avv.png" alt="plane" className="plane" />
-      <img src="images/trail.png" alt="plane" className="trail" />
-      <img src="images/morocco-map.png" alt="morocco map" className="mr-map"/>
+    <div className={styles.layer} ref={layerRef}>
+      <img src="images/avv.png" alt="plane" className={styles.plane} />
+      <img src="images/trail.png" alt="plane" className={styles.trail} />
+      <img src="images/morocco-map.png" alt="morocco map" className={styles.mrMap}/>
       <motion.div
-        className="intro-message"
+        className={styles.introMessage}
         initial={{ opacity: 0}}
         animate={{ opacity: 1}}
         transition={{ duration: 3}}

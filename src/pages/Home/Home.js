@@ -1,6 +1,6 @@
 import React from 'react'
 import Hero from './Hero/hero'
-import RestaurantSection from './restaurant'
+import RestaurantSection from './Section2/Section2'
 export default function Home() {
   return (
     <div>

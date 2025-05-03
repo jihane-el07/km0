@@ -1,4 +1,4 @@
-.restaurant-section {
+.restaurantSection {
   position: absolute;
   top: 90%;
   width: 100%;
@@ -14,7 +14,7 @@
   padding-bottom: 15px;
 }
 
-.arrow-down {
+.arrowDown {
   cursor: pointer;
   animation: bounce 2s infinite;
 }
@@ -35,34 +35,34 @@
   }
 }
 
-.content-container {
+.contentContainer {
   display: flex;
   background-color: #fff;
   color: #333;
   padding: 40px 10%;
 }
 
-.image-container {
+.imageContainer {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.image-wrapper {
+.imageWrapper {
   position: relative;
   border: 5px solid #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.chef-image {
+.chefImage {
   display: block;
   width: 100%;
   height: auto;
   object-fit: cover;
 }
 
-.image-caption {
+.imageCaption {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -74,7 +74,7 @@
   color: #333;
 }
 
-.info-container {
+.infoContainer {
   flex: 1;
   padding: 0 20px;
   display: flex;
@@ -82,19 +82,19 @@
   justify-content: center;
 }
 
-.restaurant-name {
+.restaurantName {
   font-size: 28px;
   margin-bottom: 20px;
   color: #333;
 }
 
-.restaurant-description {
+.restaurantDescription {
   line-height: 1.6;
   margin-bottom: 30px;
   color: #555;
 }
 
-.signature-container {
+.signatureContainer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -104,64 +104,64 @@
   margin-bottom: 5px;
 }
 
-.chef-name {
+.chefName {
   font-size: 14px;
   letter-spacing: 2px;
   color: #333;
 }
 
-.stats-container {
+.statsContainer {
   display: flex;
   justify-content: space-around;
   background-color: #1a1a1a;
   padding: 50px 10%;
 }
 
-.stat-item {
+.statItem {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.stat-icon {
+.statIcon {
   margin-bottom: 15px;
 }
 
-.stat-number {
+.statNumber {
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 5px;
   color: #b8860b; /* Dark gold color */
 }
 
-.stat-label {
+.statLabel {
   font-size: 14px;
   color: #ccc;
 }
 
-.about-section {
+.aboutSection {
   background-color: #fff;
   color: #333;
   padding: 40px 0;
   text-align: center;
 }
 
-.about-heading {
+.aboutHeading {
   font-size: 16px;
   color: #999;
   font-weight: normal;
   margin-bottom: 5px;
 }
 
-.about-title {
+.aboutTitle {
   font-size: 32px;
   color: #333;
   position: relative;
   display: inline-block;
 }
 
-.about-title::after {
+.aboutTitle::after {
   content: "";
   position: absolute;
   bottom: -10px;
@@ -174,32 +174,32 @@
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .content-container {
+  .contentContainer {
     flex-direction: column;
   }
 
-  .image-container,
-  .info-container {
+  .imageContainer,
+  .infoContainer {
     width: 100%;
   }
 
-  .info-container {
+  .infoContainer {
     margin-top: 30px;
     padding: 0;
   }
 
-  .stats-container {
+  .statsContainer {
     flex-wrap: wrap;
   }
 
-  .stat-item {
+  .statItem {
     width: 50%;
     margin-bottom: 30px;
   }
 }
 
 @media (max-width: 480px) {
-  .stat-item {
+  .statItem {
     width: 100%;
   }
 }

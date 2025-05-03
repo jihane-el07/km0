@@ -1,7 +1,8 @@
 "use client"
 import { useState, useEffect } from "react"
-import "./hero.css"
+import styles from "./hero.module.css"
 import { Link } from "react-router-dom"
+
 const slides = [
   {
     id: 1,
@@ -40,6 +41,7 @@ const slides = [
     btnT: 'View Menu',
   }
 ]
+
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -51,23 +53,23 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="hero-section">
+    <section className={styles.heroSection}>
       {slides.map((slide, index) => (
-        <div key={slide.id} className={`slide ${index === currentSlide ? "active-slide" : ""}`}>
-          <div className="overlay" />
+        <div key={slide.id} className={`${styles.slide} ${index === currentSlide ? styles.activeSlide : ""}`}>
+          <div className={styles.overlay} />
             <img
               src={slide.image || "/placeholder.svg"}
               alt={slide.title}
-              className="slide-image"
+              className={styles.slideImage}
             />
-          <div className="slide-content">
-            <div className={`subtitle ${index === currentSlide ? "animate-subtitle" : ""}`}>
+          <div className={styles.slideContent}>
+            <div className={`${styles.subtitle} ${index === currentSlide ? styles.animateSubtitle : ""}`}>
               <span>{slide.subtitle}</span>
             </div>
-            <h1 className={`title ${index === currentSlide ? "animate-title" : ""}`}>{slide.title}</h1>
-            <p className={`description ${index === currentSlide ? "animate-description" : ""}`}>{slide.description}</p>
-            <div className="menu-button">
-              <Link to={slide.btn} className="linkk">
+            <h1 className={`${styles.title} ${index === currentSlide ? styles.animateTitle : ""}`}>{slide.title}</h1>
+            <p className={`${styles.description} ${index === currentSlide ? styles.animateDescription : ""}`}>{slide.description}</p>
+            <div className={styles.menuButton}>
+              <Link to={slide.btn} className={styles.linkk}>
                 {slide.btnT}
               </Link>
             </div>
@@ -75,12 +77,12 @@ export default function Hero() {
         </div>
       ))}
 
-      <div className="slide-indicators">
+      <div className={styles.slideIndicators}>
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`indicator ${index === currentSlide ? "active-indicator" : ""}`}
+            className={`${styles.indicator} ${index === currentSlide ? styles.activeIndicator : ""}`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
