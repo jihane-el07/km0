@@ -41,8 +41,7 @@
 .servicesSection {
   display: flex;
   align-items: center;
-  margin-bottom: 80px;
-  padding: 40px 5%;
+  padding: 25px 5%;
   gap: 40px;
 }
 
@@ -182,7 +181,7 @@
   border-image: url('/public/images/p1.png') 30 round; 
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 60vh;
+  height: 45vh;
 }
 .imageFrame2 {
   position: relative;
@@ -190,7 +189,7 @@
   border-image: url('/public/images/p2.png') 30 round; 
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 60vh;
+  height: 45vh;
 }
 
 .restaurantImage1,
@@ -199,7 +198,7 @@
   right: 3vh;
   bottom: 2vh;
   width: 100%;
-  height: 60vh;
+  height: 45vh;
   transition: .2s ease;
 }
 
@@ -209,9 +208,10 @@
 }
 
 .restaurantImage1:hover,
-.restaurantImage2:hover {
+.restaurantImage2:hover{
   right: 0vh;
   bottom: 0vh;
+  cursor: pointer;
 }
 
 /* Responsive */
