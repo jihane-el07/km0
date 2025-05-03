@@ -109,22 +109,70 @@
 }
 
 /* Button */
+.btn {
+  position: relative;
+  padding: 10px 5px;
+  margin-left: 37%;
+  margin-right: 37%;
+  background: white;
+  color: #630707;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #b06666;
+  transition: width 1s ease;
+}
+
+.btn::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.btn::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+.btn:hover::before{
+  width: 100%;
+  border-left: none;
+}
+.btn:hover::after {
+  width: 100%;
+  border-right: none;
+}
 .btnPrimary {
-  background-color: #630707;
+  background-color: #b06666;
   color: white;
   border: none;
   padding: 12px 30px;
   font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: 'Lora', serif;
+  transition: 
+  background-color 1s ease,
+  color 1s ease;
 
 }
-
-.btnPrimary:hover {
-  background-color: #7b3131;
+.btn:hover .btnPrimary {
+  background-color: #ffffff;
+  border: 2px #b06666 solid;
+  color: #b06666;
+  font-weight: 500;
 }
 
 /* Image styling */
@@ -148,11 +196,11 @@
 .restaurantImage1,
 .restaurantImage2 {
   position: absolute;
-  right: 2vh;
+  right: 3vh;
   bottom: 2vh;
-  width: 102%;
+  width: 100%;
   height: 60vh;
-  transition: right 0.5s ease, bottom 0.5s ease;
+  transition: .2s ease;
 }
 
 .imageFrame1:hover,

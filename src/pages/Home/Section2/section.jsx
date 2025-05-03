@@ -25,7 +25,12 @@ const RestaurantSection2 = () => {
           <p className={`${styles.description} font-lora`}>
             Nestled in the heart of Tangier, Km0 is more than just a restaurant—it's a celebration of Moroccan heritage and Mediterranean freshness. From the spice markets of the Medina to the waves of the Atlantic, we draw inspiration from our surroundings to craft seasonal dishes with ingredients sourced within our region. Every meal is a tribute to our land, culture, and people.
           </p>
-          <button className={`${styles.btnPrimary} font-lora`}>Our Story</button>
+          <div>
+            <div className={styles.btn}>
+              <button className={`${styles.btnPrimary} font-lora`}>Our Story</button>
+            </div>
+          </div>
+          
         </div>
         <div className={styles.contentRight}>
           <div className={styles.imageFrame1}>
@@ -51,7 +56,9 @@ const RestaurantSection2 = () => {
           <p className={`${styles.description} font-lora`}>
             At Km0, we offer a unique culinary journey through northern Morocco. Our menu blends traditional recipes like tagines and zaalouk with modern flair, all made with local, organic ingredients. Whether you're dining in our riad-style interior or enjoying the view of the Kasbah, every visit promises warmth, flavor, and a touch of Tangier’s soul.
           </p>
-          <button className={`${styles.btnPrimary} font-lora`}>View More</button>
+          <div className={styles.btn}>
+            <button className={`${styles.btnPrimary} font-lora`}>View More</button> 
+          </div>
         </div>
         <div className={styles.contentLeft}>
           <div className={styles.imageFrame2}>
