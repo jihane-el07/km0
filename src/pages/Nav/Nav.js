@@ -26,7 +26,7 @@ export default function Nav() {
             <Link className={`${styles.navLink} ${scrolled ? styles.scrolled : ''} fs-5`} to="/">Home</Link>
           </li>
           <li className="nav-item">
-            <Link className={`${styles.navLink} ${scrolled ? styles.scrolled : ''} fs-5`} to="/Event">Event</Link>
+            <Link className={`${styles.navLink} ${scrolled ? styles.scrolled : ''} fs-5`} to="/Event">Events</Link>
           </li>
           <li className="nav-item">
             <Link className={`${styles.navLink} ${scrolled ? styles.scrolled : ''} fs-5`} to="/Patisserie">Patisserie</Link>
