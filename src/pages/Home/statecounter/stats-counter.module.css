@@ -6,8 +6,8 @@
   position: absolute;
   top: 240%;
   overflow: hidden;
-  background-image: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.712)),
-    url("../../../images/tanger.png");
+  background-image: linear-gradient(rgb(0, 0, 0), rgba(47, 6, 6, 0.486)),
+    url("../../../images/bare1.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

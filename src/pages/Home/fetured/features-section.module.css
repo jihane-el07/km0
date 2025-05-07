@@ -15,7 +15,7 @@
 .scriptHeading {
   font-family: 'Berkshire Swash', cursive;
   font-style: italic;
-  color: #888;
+  color: #b06666;
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
@@ -23,7 +23,7 @@
 .mainHeading {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1a202c;
+  color: #222;
   margin-bottom: 1.5rem;
   font-family: 'Lora', serif;
 }
@@ -66,39 +66,69 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
 .featureCard {
+  position: relative;
   border: 1px solid #e2e8f0;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: all 0.3s ease;
   height: 100%;
+  transition: transform 0.3s ease;
 }
 
-.featureCard:hover {
-  border-bottom: 3px solid #f59e0b;
+.featureCard:hover .featureIcon{
   transform: translateY(-5px);
+  color: #b06666;
+}
+.featureCard:hover{
+  transform: translateY(-5px);
+}
+.featureCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border-top: 4px solid #b06666;
+  border-left: 4px solid #b06666;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.featureCard::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  border-bottom: 4px solid #b06666;
+  border-right: 4px solid #b06666;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.featureCard:hover::before,
+.featureCard:hover::after {
+  opacity: 1;
 }
 
 .featureIcon {
   width: 3rem;
   height: 3rem;
   margin-bottom: 1.5rem;
-  color: #1a202c;
+  color: #222222;
 }
 .featureIcon1 {
-  width: 1.2rem;
-  height: 1.2rem;
-  color:  #888;
+  width: 3rem;
+  height: 3rem;
 }
 .featureTitle {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #1a202c;
+  color: #222;
   font-family: 'Lora', serif;
 }
 
