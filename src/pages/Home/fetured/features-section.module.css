@@ -3,9 +3,9 @@
   width: 100%;
   margin: 0px auto;
   text-align: center;
-  z-index: 1;
+  /* z-index: 1;
   position: absolute;
-  top: 290%;
+  top: 290%; */
 }
 
 .heading {

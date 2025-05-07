@@ -3,15 +3,15 @@
   height: 55vh;
   background-color: rgb(0, 0, 0);
   padding: 4rem 1rem;
-  position: absolute;
-  top: 240%;
+  /* position: absolute;
+  top: 240%; */
   overflow: hidden;
   background-image: linear-gradient(rgb(0, 0, 0), rgba(47, 6, 6, 0.486)),
     url("../../../images/bare1.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  z-index: 1;
+
 }
 
 .container {
