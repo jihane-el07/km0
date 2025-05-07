@@ -81,9 +81,11 @@
 .featureCard:hover .featureIcon{
   transform: translateY(-5px);
   color: #b06666;
+  cursor: pointer;
 }
 .featureCard:hover{
   transform: translateY(-5px);
+  cursor: pointer;
 }
 .featureCard::before {
   content: "";
