@@ -11,7 +11,6 @@ const EventHero = () => {
         <Link className={styles.Link} to='/'>Home</Link>
         <img src='/images/coffee.png' alt='' />
         <Link className={styles.LinkA} to='/Event'>Event</Link>
-
         </div>
       </div>
     </div>
