@@ -1,0 +1,142 @@
+.featuresSection {
+  padding: 7rem 5rem;
+  width: 100%;
+  margin: 0px auto;
+  text-align: center;
+  /* z-index: 1;
+  position: absolute;
+  top: 290%; */
+}
+
+.heading {
+  margin-bottom: 3rem;
+}
+
+.scriptHeading {
+  font-family: 'Berkshire Swash', cursive;
+  font-style: italic;
+  color: #b06666;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.mainHeading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1.5rem;
+  font-family: 'Lora', serif;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  width: 100%;
+  max-width: 200px;
+  font-family: 'Lora', serif;
+}
+
+.line {
+  height: 1px;
+  background-color: #ddd;
+  flex-grow: 1;
+}
+
+.icon {
+  margin: 0 1rem;
+  color: #888;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .featuresGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.featureCard {
+  position: relative;
+  border: 1px solid #e2e8f0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.featureCard:hover .featureIcon{
+  transform: translateY(-5px);
+  color: #b06666;
+  cursor: pointer;
+}
+.featureCard:hover{
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+.featureCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border-top: 4px solid #b06666;
+  border-left: 4px solid #b06666;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.featureCard::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  border-bottom: 4px solid #b06666;
+  border-right: 4px solid #b06666;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.featureCard:hover::before,
+.featureCard:hover::after {
+  opacity: 1;
+}
+
+.featureIcon {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1.5rem;
+  color: #222222;
+}
+.featureIcon1 {
+  width: 3rem;
+  height: 3rem;
+}
+.featureTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #222;
+  font-family: 'Lora', serif;
+}
+
+.featureText {
+  color: #718096;
+  line-height: 1.6;
+  font-family: 'Lora', serif;
+
+}
