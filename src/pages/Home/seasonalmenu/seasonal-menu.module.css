@@ -8,7 +8,7 @@
 
 .leftSection {
   width: 30%;
-  height: 90vh;
+  height: 85vh;
   background-color: #b066665b;
   display: flex;
   align-items: center;
@@ -47,11 +47,31 @@
 }
 
 .divider {
-  width: 180px;
-  height: 1px;
-  background-color: #ddd;
-  margin: 30px auto;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  width: 100%;
+  max-width: 250px;
+  margin: 0px auto; 
+  height: 10vh;
 }
+
+
+.line {
+  height: 1px;
+  background-color: #ffffff;
+  flex-grow: 1;
+}
+
+.ornament {
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1'%3E%3Cpath d='M12 3L16 12L12 21L8 12L12 3Z'/%3E%3Cpath d='M3 12L12 8L21 12L12 16L3 12Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 10px;
+}
+
 
 .description {
   color: #666;
@@ -130,7 +150,7 @@
 .rightSection {
   width: 70%;
   height: 60vh;
-  margin-top: 15vh;
+  margin-top: 13vh;
   position: relative;
 }
 

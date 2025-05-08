@@ -10,11 +10,14 @@ export default function SeasonalMenu() {
             <span className={styles.embracing}>Embracing</span>
             <span className={styles.seasonalMenus}>Seasonal Menus</span>
           </h2>
-          <div className={styles.divider}></div>
-          <p className={styles.description}>
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
+          <div className={styles.divider}>
+            <span className={styles.line}></span>
+            <span className={styles.ornament}></span>
+            <span className={styles.line}></span>
+          </div>          <p className={styles.description}>
+            Discover the essence of each season through our thoughtfully crafted menus. From fresh spring vegetables to cozy winter flavors, every dish is designed to celebrate nature’s bounty at its peak. Taste the harmony of seasonal ingredients, expertly prepared to bring warmth, freshness, and flavor to your table.
           </p>
+
           <Link to='/Menu'>
           <div className={styles.btn}>
             <button className={`${styles.btnPrimary} font-lora`}>View Menu</button>
