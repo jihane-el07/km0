@@ -23,16 +23,21 @@ export default function Nav() {
       <div className="container-fluid d-flex justify-content-between align-items-center ps-5 pe-5">
         {/* Left Side Links */}
         <ul className="navbar-nav left d-flex flex-row gap-3">
-          {['/', '/Event', '/Patisserie', '/Menu', '/contact'].map((path, i) => (
-            <li className="nav-item" key={i}>
-              <Link
-                className={`${styles.navLink} ${scrolled ? styles.scrolled : ''} fs-5`}
-                to={path}
-              >
-                {path === '/' ? 'Home' : path.replace('/', '')}
-              </Link>
-            </li>
-          ))}
+          <li className="nav-item">
+            <Link className={`${styles.navLink} ${scrolled ? styles.scrolled : ''} fs-5`} to="/">Home</Link>
+          </li>
+          <li className="nav-item">
+            <Link className={`${styles.navLink} ${scrolled ? styles.scrolled : ''} fs-5`} to="/Event">Events</Link>
+          </li>
+          <li className="nav-item">
+            <Link className={`${styles.navLink} ${scrolled ? styles.scrolled : ''} fs-5`} to="/Patisserie">Patisserie</Link>
+          </li>
+          <li className="nav-item">
+            <Link className={`${styles.navLink} ${scrolled ? styles.scrolled : ''} fs-5`} to="/Menu">Menu</Link>
+          </li>
+          <li className="nav-item">
+            <Link className={`${styles.navLink} ${scrolled ? styles.scrolled : ''} fs-5`} to="/contact">Contact Us</Link>
+          </li>
         </ul>
 
         {/* Center Logo */}
