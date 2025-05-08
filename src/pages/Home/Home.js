@@ -4,6 +4,7 @@ import RestaurantSection2 from './Section2/section'
 import StatsCounter from './statecounter/stats-counter'
 import FeaturesSection from './fetured/features-section'
 import DiningPromo from './discount/dining-promo'
+import SeasonalMenu from './seasonalmenu/seasonal-menu'
 export default function Home() {
   return (
     <div>
@@ -12,6 +13,7 @@ export default function Home() {
       <StatsCounter/>
       <FeaturesSection/>
       <DiningPromo/>
+      <SeasonalMenu/>
     </div>
   )
 }

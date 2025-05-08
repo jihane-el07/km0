@@ -1,0 +1,175 @@
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 500px;
+  font-family: "Arial", sans-serif;
+  margin-bottom: 10vh;
+}
+
+.leftSection {
+  width: 30%;
+  height: 90vh;
+  background-color: #b066665b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.textContent {
+  max-width: 400px;
+  text-align: center;
+}
+
+.heading {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.embracing {
+  font-family: 'Berkshire Swash', cursive;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.seasonalMenus {
+  font-size: 2.5rem;
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  color: #630707;
+  text-transform: none;
+}
+
+.divider {
+  width: 180px;
+  height: 1px;
+  background-color: #ddd;
+  margin: 30px auto;
+}
+
+.description {
+  color: #666;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 40px;
+  font-family: 'Lora', serif;
+}
+.btn {
+  position: relative;
+  padding: 10px 10px;
+  display: inline-block;
+  color: #630707;
+  width: max-content;
+  border: none;
+  font-size: 16px;
+  font-family: 'Lora', serif;
+  cursor: pointer;
+}
+
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #b06666;
+  transition: width 1s ease;
+}
+
+.btn::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.btn::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+.btn:hover::before{
+  width: 100%;
+  border-left: none;
+}
+.btn:hover::after {
+  width: 100%;
+  border-right: none;
+}
+.btnPrimary {
+  background-color: #b06666;
+  color: white;
+  border: none;
+  width: max-content;
+  padding: 12px 30px;
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Lora', serif;
+  transition: 
+  background-color 1s ease,
+  color 1s ease;
+
+}
+.btn:hover .btnPrimary {
+  background-color: transparent;
+  border: 2px #b06666 solid;
+  color: #b06666;
+  font-weight: 500;
+}
+
+
+.rightSection {
+  width: 70%;
+  height: 60vh;
+  margin-top: 10vh;
+  position: relative;
+}
+
+.foodGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  height: 100%;
+  width: 100%;
+}
+
+.foodItem {
+  background-position: center;
+}
+.img{
+  width: 100%;
+  height: 35vh;
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .leftSection,
+  .rightSection {
+    width: 100%;
+  }
+
+  .rightSection {
+    height: 500px;
+  }
+
+  .navigationDots {
+    right: 10px;
+    bottom: 20px;
+    top: auto;
+    transform: none;
+    flex-direction: row;
+  }
+}
