@@ -15,6 +15,9 @@
   justify-content: center;
   align-items: flex-start;
   padding-bottom: 15px;
+  position: absolute;
+  top: 93%;
+  left: 47%;
 }
 
 .arrowDown {
