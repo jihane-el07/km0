@@ -6,6 +6,7 @@ import EventList from "./ListCards/EventList"
 import styles from "./Events.module.css"
 import EventHero from "./Hero/EventHero"
 import Party from "./party/Party"
+import RestaurantSection from "./section/RestaurantSection"
 
 
 
@@ -120,6 +121,7 @@ const Events = () => {
         
       </div>
       <Party />
+      <RestaurantSection />
       
       
 

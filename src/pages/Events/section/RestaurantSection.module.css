@@ -1,0 +1,265 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Georgia', serif;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 36px;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.divider {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 200px;
+}
+
+.dividerLine {
+  height: 1px;
+  width: 100%;
+  background-color: #cccccc;
+}
+
+.dividerIcon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4c9b0' stroke-width='1'%3E%3Cpath d='M12 3L16 12L12 21L8 12L12 3Z'/%3E%3Cpath d='M3 12L12 8L21 12L12 16L3 12Z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mainContent {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 60px;
+  flex-direction: row-reverse;
+}
+.mainContent2 {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+
+.textSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666666;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+
+/* Button */
+.btn {
+  position: relative;
+  padding: 10px 10px;
+  margin-left: 37%;
+  margin-right: 37%;
+  background: white;
+  color: #630707;
+  width: max-content;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #b06666;
+  transition: width 1s ease;
+}
+
+.btn::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.btn::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+.btn:hover::before{
+  width: 100%;
+  border-left: none;
+}
+.btn:hover::after {
+  width: 100%;
+  border-right: none;
+}
+.btnPrimary {
+  background-color: #b06666;
+  color: white;
+  border: none;
+  width: max-content;
+  padding: 12px 30px;
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Lora', serif;
+  transition: 
+  background-color 1s ease,
+  color 1s ease;
+
+}
+.btn:hover .btnPrimary {
+  background-color: #ffffff;
+  border: 2px #b06666 solid;
+  color: #b06666;
+  font-weight: 500;
+}
+
+
+
+
+
+.imageSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: auto;
+  padding: 20px; 
+  transition: all 0.4s ease;
+}
+
+.border::before,
+.border::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.border::before {
+  top: 0;
+  left: 0;
+  border-top: 4px solid #b06666;
+  border-left: 4px solid #b06666;
+}
+
+.border::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 4px solid #b06666;
+  border-right: 4px solid #b06666;
+}
+
+.border:hover::before,
+.border:hover::after {
+  width: 200px;
+  height: 200px;
+}
+
+.mainImage {
+  width: 100%; 
+  height: 450px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+
+
+
+
+
+
+.bottomSection {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.bottomImageSection {
+  flex: 1;
+}
+
+.bottomImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.menuSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.wineTastings {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: #999999;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.specialDishes {
+  font-size: 42px;
+  color: #1a1a1a;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .mainContent,
+  .bottomSection {
+    flex-direction: column;
+  }
+  
+  .description {
+    text-align: center;
+  }
+  
+  .bookNowWrapper {
+    justify-content: center;
+  }
+}
