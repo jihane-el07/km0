@@ -1,0 +1,185 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  /* padding-bottom: 70vh;
+  padding-top: 50vh; */
+}
+
+.modalContent {
+  position: relative;
+  width: 1000vh;
+  height: 80vh;
+  max-width: 700px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  /* padding-top: 50px; */
+  overflow: hidden;
+}
+
+.closeButton {
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.402);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background-color 0.3s;
+}
+
+.closeButton:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.imageContainer {
+  position: relative;
+  height: 92%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+}
+
+.mainImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding-top: 8vh;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  height: 100%;
+  object-fit: cover;
+}
+
+.loadingIndicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e0e0e0;
+  border-top: 4px solid #b06666;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.captionContainer {
+  padding-bottom: 15px;
+  padding-top: 5px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+
+.counter {
+  margin: 0;
+  font-size: 14px;
+  color: #777;
+}
+
+.thumbnailContainer {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  overflow-x: auto;
+  gap: 8px;
+  margin: auto auto 0 auto; /* Top margin to space from content above, centered horizontally */
+  max-width: 90%; /* Optional: control horizontal space */
+}
+
+
+.imageContainer:hover .thumbnailContainer {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* slide to position */
+}
+
+.thumbnail {
+  width: 60px;
+  height: 60px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.activeThumbnail {
+  border-color: #b06666;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.518);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.navButton:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.prevButton {
+  left: 15px;
+}
+
+.nextButton {
+  right: 15px;
+}
+
