@@ -5,6 +5,7 @@ import StatsCounter from './statecounter/stats-counter'
 import FeaturesSection from './fetured/features-section'
 import DiningPromo from './discount/dining-promo'
 import SeasonalMenu from './seasonalmenu/seasonal-menu'
+import PatesserieGrid from './Patesseriesection/PatesserieGrid'
 export default function Home() {
   return (
     <div>
@@ -14,6 +15,7 @@ export default function Home() {
       <FeaturesSection/>
       <DiningPromo/>
       <SeasonalMenu/>
+      <PatesserieGrid/>
     </div>
   )
 }
