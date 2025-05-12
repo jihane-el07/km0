@@ -32,9 +32,8 @@ export default function Party() {
             <h2 className={styles.Title}>Need Your Best Party</h2>
             <p className={styles.SubTitle}>Events Rooms</p>
         </div>
-        
-        
         }
+        
       </div>
       
     </div>

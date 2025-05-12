@@ -19,7 +19,6 @@
 .content {
     position: relative;
     z-index: 1;
-    
     padding: 0 20px;
     text-align: center;
     margin-top: 5%;
@@ -42,3 +41,6 @@
     font-family: 'Lora', serif;
     font-weight: bold;
 }
+
+
+
