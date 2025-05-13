@@ -1,12 +1,11 @@
 "use client"
 
-import React from "react"
 import styles from "./PatesserieGrid.module.css"
 
 const cuisines = [
   {
     id: 1,
-    name: null, // Japanese cuisine (no label in the image)
+    name: null,
     image: "/images/pa1.png",
     icon: null,
   },
@@ -14,11 +13,11 @@ const cuisines = [
     id: 2,
     name: "French Cuisine",
     image: "/images/pa3.png",
-    icon: "wine",
+    icon: "briouat",
   },
   {
     id: 3,
-    name: null, // Steak/meat preparation
+    name: null,
     image: "/images/pa5.png",
     icon: null,
   },
@@ -26,18 +25,17 @@ const cuisines = [
     id: 4,
     name: "Italian Cuisine",
     image: "/images/pa7.png",
-    icon: "beer",
+    icon: "kaab_el_ghazal",
   },
-  // Bottom row (4 images)
   {
     id: 5,
     name: "Chinese Cuisine",
     image: "/images/pa2.png",
-    icon: "milk",
+    icon: "croissant",
   },
   {
     id: 6,
-    name: null, // Dumplings (no label in the image)
+    name: null,
     image: "/images/pa4.png",
     icon: null,
   },
@@ -45,7 +43,7 @@ const cuisines = [
     id: 7,
     name: "Mexican Cuisine",
     image: "/images/pa6.png",
-    icon: "taco",
+    icon: "cake",
   },
   {
     id: 8,
@@ -61,40 +59,24 @@ export default function PatesserieGrid() {
 
     return (
       <div className={styles.icon}>
-        {iconType === "wine" && (
+        {iconType === "croissant" && (
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M12 13C14.21 13 16 11.21 16 9V3H8V9C8 11.21 9.79 13 12 13ZM12 1H16V2H12V1ZM17 16H13V20H11V16H7C5.9 16 5 16.9 5 18V22H19V18C19 16.9 18.1 16 17 16Z"
-              fill="#E0C675"
-            />
+            <path d="M2 12C2 15.31 4.69 18 8 18C8 14.69 5.31 12 2 12ZM22 12C22 15.31 19.31 18 16 18C16 14.69 18.69 12 22 12ZM8 6C4.69 6 2 8.69 2 12C5.31 12 8 9.31 8 6ZM16 6C19.31 6 22 8.69 22 12C18.69 12 16 9.31 16 6ZM9 12C9 14.21 10.79 16 13 16C13 13.79 11.21 12 9 12ZM15 12C15 14.21 16.79 16 19 16C19 13.79 17.21 12 15 12Z" fill="#E0C675"/>
           </svg>
         )}
-        {iconType === "beer" && (
+        {iconType === "cake" && (
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M15 19H9V8H15V19ZM16 6H8C7.45 6 7 6.45 7 7V20C7 20.55 7.45 21 8 21H16C16.55 21 17 20.55 17 20V7C17 6.45 16.55 6 16 6ZM18 4H6V2H18V4Z"
-              fill="#E0C675"
-            />
+            <path d="M12 2C11.17 2 10.5 2.67 10.5 3.5C10.5 4.33 11.17 5 12 5C12.83 5 13.5 4.33 13.5 3.5C13.5 2.67 12.83 2 12 2ZM18 6H6V8H18V6ZM5 10V21H19V10H5ZM17 19H7V12H17V19Z" fill="#E0C675"/>
           </svg>
         )}
-        {iconType === "milk" && (
+        {iconType === "briouat" && (
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M14 7V5C14 3.9 13.1 3 12 3H8C6.9 3 6 3.9 6 5V7H5C3.9 7 3 7.9 3 9V14C3 15.1 3.9 16 5 16H6V19C6 20.1 6.9 21 8 21H12C13.1 21 14 20.1 14 19V16H15C16.1 16 17 15.1 17 14V9C17 7.9 16.1 7 15 7H14ZM8 5H12V7H8V5ZM12 19H8V14H12V19ZM15 14H14V12H8V14H5V9H15V14Z"
-              fill="#E0C675"
-            />
+            <path d="M4 4L20 4L12 20L4 4Z" fill="#E0C675"/>
           </svg>
         )}
-        {iconType === "taco" && (
+        {iconType === "kaab_el_ghazal" && (
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M12 3C7.03 3 3 7.03 3 12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12C21 7.03 16.97 3 12 3ZM12 19C8.14 19 5 15.86 5 12C5 8.14 8.14 5 12 5C15.86 5 19 8.14 19 12C19 15.86 15.86 19 12 19Z"
-              fill="#E0C675"
-            />
-            <path
-              d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z"
-              fill="#E0C675"
-            />
+            <path d="M4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12H18C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12H4Z" fill="#E0C675"/>
           </svg>
         )}
       </div>
