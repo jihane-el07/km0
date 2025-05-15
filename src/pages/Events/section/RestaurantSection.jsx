@@ -49,7 +49,7 @@ const RestaurantSection = () => {
               </div>
               <div className={styles.imageSection}>
                 <div className={styles.border}>
-                      <img src="/images/birth.jpg" alt='Marriage Proposal' className={styles.mainImage} />
+                      <img src="/images/proposal.jpg" alt='Marriage Proposal' className={styles.mainImage} />
                 </div>
               </div>  
       </div>
@@ -68,7 +68,7 @@ const RestaurantSection = () => {
               </div>
               <div className={styles.imageSection}>
                 <div className={styles.border}>
-                      <img src="/images/eid.jpg" alt='Birthday Parties' className={styles.mainImage} />
+                      <img src="/images/birth.jpg" alt='Birthday Parties' className={styles.mainImage} />
                 </div>
               </div>  
       </div>
@@ -87,7 +87,7 @@ const RestaurantSection = () => {
               </div>
               <div className={styles.imageSection}>
                 <div className={styles.border}>
-                      <img src="/images/ramadan.jpg" alt='Corporate Events' className={styles.mainImage} />
+                      <img src="/images/event.jpg" alt='Corporate Events' className={styles.mainImage} />
                 </div>
               </div>  
       </div>
@@ -106,7 +106,7 @@ const RestaurantSection = () => {
               </div>
               <div className={styles.imageSection}>
                 <div className={styles.border}>
-                      <img src="/images/eid.jpg" alt='Private Dinners' className={styles.mainImage} />
+                      <img src="/images/private.jpg" alt='Private Dinners' className={styles.mainImage} />
                 </div>
               </div>  
       </div>
