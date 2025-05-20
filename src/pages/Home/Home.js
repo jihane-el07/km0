@@ -6,6 +6,8 @@ import FeaturesSection from './fetured/features-section'
 import DiningPromo from './discount/dining-promo'
 import SeasonalMenu from './seasonalmenu/seasonal-menu'
 import PatesserieGrid from './Patesseriesection/PatesserieGrid'
+import TeamShowcase from './TeamShowcase/TeamShowcase'
+import Review from './Review/Review'
 export default function Home() {
   return (
     <div>
@@ -16,6 +18,8 @@ export default function Home() {
       <DiningPromo/>
       <SeasonalMenu/>
       <PatesserieGrid/>
+      <TeamShowcase/>
+      <Review/>
     </div>
   )
 }

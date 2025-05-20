@@ -4,6 +4,7 @@ import IntroLayer from './pages/intro/IntroLayer';
 import Home from './pages/Home/Home';
 import Nav from './pages/Nav/Nav';
 import Events from './pages/Events/Events';
+import Footer from './pages/Footer/Footer';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 const ScrollToTop = () => {
@@ -33,6 +34,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/Event' element={<Events/>}/>
       </Routes>
+      <Footer/>
     </div>
   );
 }
