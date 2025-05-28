@@ -30,8 +30,6 @@ const RestaurantSection = () => {
     
   ]
   
-
-
   return (
     
     <div className={styles.container}>
@@ -39,8 +37,11 @@ const RestaurantSection = () => {
               <div className={styles.textSection}>
               <h1 className={styles.title}>Marriage Proposal</h1>
               <div className={styles.divider}>
-                <span className={styles.dividerLine}></span>
-                <span className={styles.dividerIcon}></span>
+                <div className={styles.line}></div>
+                <span className={styles.icon}>
+                  <img src="/images/flower.webp" className={styles.featureIcon1} alt="divider" />
+                </span>
+                <div className={styles.line}></div>
               </div>
                 <p className={styles.description}>Turn your special question into a magical moment at Km0. In the heart of Tangier, we craft  elegant settings with romantic décor, candlelit dining, and customized details. Let our team help you create a memory to cherish forever.</p>
                 <div className={styles.btn}>
@@ -57,9 +58,12 @@ const RestaurantSection = () => {
       <div className={styles.mainContent2}>
               <div className={styles.textSection}>
               <h1 className={styles.title}>Birthday Parties</h1>
-              <div className={styles.divider}>
-                <span className={styles.dividerLine}></span>
-                <span className={styles.dividerIcon}></span>
+               <div className={styles.divider}>
+                <div className={styles.line}></div>
+                <span className={styles.icon}>
+                  <img src="/images/flower.webp" className={styles.featureIcon1} alt="divider" />
+                </span>
+                <div className={styles.line}></div>
               </div>
                 <p className={styles.description}>Celebrate life’s milestones with flavor and flair. From children’s birthdays to elegant soirées for adults, Km0 offers themed decorations, custom cakes, and special menus—all in a warm, stylish Moroccan-Mediterranean setting.</p>
                 <div className={styles.btn}>
@@ -76,9 +80,12 @@ const RestaurantSection = () => {
       <div className={styles.mainContent}>
               <div className={styles.textSection}>
               <h1 className={styles.title}>Corporate Events</h1>
-              <div className={styles.divider}>
-                <span className={styles.dividerLine}></span>
-                <span className={styles.dividerIcon}></span>
+               <div className={styles.divider}>
+                <div className={styles.line}></div>
+                <span className={styles.icon}>
+                  <img src="/images/flower.webp" className={styles.featureIcon1} alt="divider" />
+                </span>
+                <div className={styles.line}></div>
               </div>
                 <p className={styles.description}>Where professionalism meets authentic hospitality. Whether it’s a business lunch, team dinner, or strategy meeting, Km0 provides flexible private spaces, curated menus, and a refined atmosphere to impress your colleagues and clients.</p>
                 <div className={styles.btn}>
@@ -96,8 +103,11 @@ const RestaurantSection = () => {
               <div className={styles.textSection}>
               <h1 className={styles.title}>Private Dinners</h1>
               <div className={styles.divider}>
-                <span className={styles.dividerLine}></span>
-                <span className={styles.dividerIcon}></span>
+                <div className={styles.line}></div>
+                <span className={styles.icon}>
+                  <img src="/images/flower.webp" className={styles.featureIcon1} alt="divider" />
+                </span>
+                <div className={styles.line}></div>
               </div>
                 <p className={styles.description}>Exclusivity, flavor, and comfort—all in one table. Enjoy a romantic dinner for two or host a discreet business meal in one of our private areas. Our seasonal dishes and warm service offer a truly personalized dining experience.</p>
                 <div className={styles.btn}>
@@ -109,6 +119,8 @@ const RestaurantSection = () => {
                       <img src="/images/private.jpg" alt='Private Dinners' className={styles.mainImage} />
                 </div>
               </div>  
+
+              
       </div>
     </div>
   );

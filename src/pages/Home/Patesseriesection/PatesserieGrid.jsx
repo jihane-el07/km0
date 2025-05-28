@@ -1,5 +1,6 @@
 "use client"
 
+import { Link } from "react-router-dom"
 import styles from "./PatesserieGrid.module.css"
 
 const cuisines = [
@@ -11,7 +12,7 @@ const cuisines = [
   },
   {
     id: 2,
-    name: "French Cuisine",
+    name: "Salty Appetizers",
     image: "/images/pa3.png",
     icon: "briouat",
   },
@@ -23,7 +24,7 @@ const cuisines = [
   },
   {
     id: 4,
-    name: "Italian Cuisine",
+    name: "Morrocan Sweet",
     image: "/images/pa7.png",
     icon: "kaab_el_ghazal",
   },
@@ -41,7 +42,7 @@ const cuisines = [
   },
   {
     id: 7,
-    name: "Mexican Cuisine",
+    name: "International Dessert",
     image: "/images/pa6.png",
     icon: "cake",
   },
@@ -100,11 +101,11 @@ export default function PatesserieGrid() {
             <div className={styles.imageContainer}>
               <img src={cuisine.image || "/placeholder.svg"} alt={cuisine.name || "Cuisine"} className={styles.image} />
               {(cuisine.name || cuisine.icon) && (
-                <div className={styles.overlay}>
-                  {renderIcon(cuisine.icon)}
-                  {cuisine.icon && cuisine.name && <div className={styles.divider}></div>}
-                  {cuisine.name && <h3 className={styles.cuisineName}>{cuisine.name}</h3>}
-                </div>
+                <Link to='/Patisserie' className={styles.overlay} style={{textDecoration:'none'}}>
+                    {renderIcon(cuisine.icon)}
+                    {cuisine.icon && cuisine.name && <div className={styles.divider}></div>}
+                    {cuisine.name && <h3 className={styles.cuisineName}>{cuisine.name}</h3>}
+                </Link>
               )}
             </div>
           </div>

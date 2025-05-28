@@ -1,0 +1,162 @@
+
+/* Section container */
+.section {
+  width: 100%;
+  background-color: #f6f2ea;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 16px;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Image styling */
+.imageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  max-width: 110%;
+  height: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Content styling */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 100%;
+}
+
+.subtitle {
+  font-family: 'Berkshire Swash', cursive;
+  font-style: italic;
+  font-size: 2.25rem;
+  color: #b06666;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.title {
+  font-family: 'Lora', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.description {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  font-family: 'Lora', serif;
+  margin: 8px 0 24px 0;
+}
+
+.buttonContainer {
+  margin-top: 8px;
+}
+
+.btn {
+  position: relative;
+  padding: 10px 10px;
+  margin-left: 37%;
+  margin-right: 37%;
+  color: #630707;
+  width: max-content;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #b06666;
+  transition: width 1s ease;
+}
+
+.btn::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.btn::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+.btn:hover::before{
+  width: 100%;
+  border-left: none;
+}
+.btn:hover::after {
+  width: 100%;
+  border-right: none;
+}
+.btnPrimary {
+  background-color: #b06666;
+  color: white;
+  border: none;
+  width: max-content;
+  padding: 12px 30px;
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Lora', serif;
+  transition: 
+  background-color 1s ease,
+  color 1s ease;
+
+}
+.btn:hover .btnPrimary {
+  background-color: #ffffff;
+  border: 2px #b06666 solid;
+  color: #b06666;
+  font-weight: 500;
+}
+/* Media queries for responsive design */
+@media (min-width: 768px) {
+  .grid {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .imageContainer {
+    flex: 1;
+    padding-right: 24px;
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .container {
+    padding: 64px 24px;
+  }
+}
