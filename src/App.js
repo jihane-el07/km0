@@ -7,6 +7,7 @@ import Events from './pages/Events/Events';
 import Footer from './pages/Footer/Footer';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import BookMenu from './pages/Menu/book-menu';
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -33,6 +34,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/Event' element={<Events/>}/>
+        <Route path='/Menu' element={<BookMenu/>}/>
       </Routes>
       <Footer/>
     </div>
