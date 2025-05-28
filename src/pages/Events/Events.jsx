@@ -99,9 +99,11 @@ const Events = () => {
           <h3 className={`${styles.subtitle} font-great-vibes`}>Gather Taste Celebrate</h3>
           <h2 className={`${styles.title} font-playfair`}>KM0 Events</h2>
           <div className={styles.divider}>
-            <span className={styles.line}></span>
-            <span className={styles.ornament}></span>
-            <span className={styles.line}></span>
+            <div className={styles.line}></div>
+            <span className={styles.icon}>
+              <img src="/images/flower.webp" className={styles.featureIcon1} alt="divider" />
+            </span>
+            <div className={styles.line}></div>
           </div>
           <p className={`${styles.description} font-lora`}>
           Discover a world of flavor, creativity, and community through KM0’s curated events. From exclusive culinary experiences to engaging workshops and festive holiday celebrations, there’s always something special happening. Whether you're a food lover, a curious learner, or just looking to celebrate, our events offer something for everyone. Don’t miss out—book early to secure your spot!          </p>

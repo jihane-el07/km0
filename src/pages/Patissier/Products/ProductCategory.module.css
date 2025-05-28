@@ -1,0 +1,170 @@
+.productGrid {
+  flex: 1;
+  padding: 2rem;
+  margin-bottom: 10%;
+  
+}
+
+.hero {
+  position: relative;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.heroImage {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroTitle {
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+
+.sortControls {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.sortGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sortGroup label {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.sortSelect {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.products {
+  display: grid;
+  gap: 1rem;
+}
+
+.products.grid {
+  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+}
+
+.products.gridLarge {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.products.gridSmall {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.products.list {
+  grid-template-columns: 1fr;
+}
+
+.productCard {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.productCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.productImage {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.productImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.productInfo {
+  padding: 1.5rem;
+}
+
+.productName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.productUnits {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.productPrice {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #b06666;
+  padding-bottom: 10%;
+}
+
+.currency {
+  font-size: 1rem;
+  color: #b06666;
+}
+
+.commande {
+  background-color: white;
+  color: #b06666;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 1px solid #b06666;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: none;
+}
+.productCard:hover .commande {
+  display: block;
+}
+
+.commande:hover {
+  background-color: #b06666;
+  color: white;
+}
+
+

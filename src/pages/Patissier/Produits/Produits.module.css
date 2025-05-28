@@ -1,0 +1,87 @@
+.featuresSection {
+  padding: 7rem 5rem;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #f6f2ea;
+}
+
+.heading {
+  margin-bottom: 3rem;
+}
+
+.scriptHeading {
+  font-family: 'Berkshire Swash', cursive;
+  font-style: italic;
+  color: #b06666;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.mainHeading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1.5rem;
+  font-family: 'Lora', serif;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  max-width: 200px;
+}
+
+.line {
+  height: 1px;
+  background-color: #ddd;
+  flex-grow: 1;
+}
+
+.icon {
+  margin: 0 1rem;
+}
+
+.featureImage {
+  width: 80%;
+  height: 170px;
+  margin-bottom: 1rem;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  justify-items: center;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.featureTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #222;
+  font-family: 'Lora', serif;
+}
+
+.featureText {
+  color: #718096;
+  line-height: 1.6;
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  max-width: 300px;
+}

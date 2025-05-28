@@ -46,29 +46,27 @@
 /* Divider */
 .divider {
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
-  width: 100%;
-  max-width: 250px;
-  margin: 0 auto; 
-  height: 10vh;
+  margin: 1rem auto;
+  max-width: 200px;
 }
-
 
 .line {
   height: 1px;
-  background-color: #d4c9b0;
+  background-color: #ddd;
   flex-grow: 1;
 }
 
-.ornament {
-  width: 20px;
-  height: 20px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4c9b0' stroke-width='1'%3E%3Cpath d='M12 3L16 12L12 21L8 12L12 3Z'/%3E%3Cpath d='M3 12L12 8L21 12L12 16L3 12Z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  margin: 0 10px;
+.icon {
+  margin: 0 15px;
 }
+
+.featureIcon1 {
+  width: 40px;
+  height: 40px;
+}
+
 
 .intro h2 {
   font-size: 36px;

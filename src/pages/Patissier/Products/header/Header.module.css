@@ -1,0 +1,54 @@
+.mainNav {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navList {
+  display: flex;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.navLink:hover {
+  color: #b06666;
+  border-bottom: 2px solid #b06666;
+}
+
+/* Active class support if you use NavLink later */
+.navLinkActive {
+  color: #b06666;
+  border-bottom: 2px solid #b06666;
+}
+
+@media (max-width: 768px) {
+  .mainNav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navList {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navLink {
+    font-size: 18px;
+  }
+}

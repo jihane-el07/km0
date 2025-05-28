@@ -1,0 +1,113 @@
+[
+    {
+        "id":1,
+        "imageH":"images/Boulangerie1.jpg",
+        "image":"images/B1.jpg",
+        "name":"Assortment of Mini Milk Buns",
+        "quantity":" 15 units",
+        "categorie":"Boulangerie",
+        "price":"47,00"
+    },
+    {
+        "id":2,
+        "imageH":"images/Viennoiserie1.jpg",
+        "image":"images/V1.jpg",
+        "categorie":"Viennoiserie",
+        "name":"30g Mini Croissant",
+        "quantity":" 10 units",
+        "price":"42,00"
+    },
+    {
+        "id":3,
+        "imageH":"images/Glace.jpg",
+        "image":"images/G1.jpg",
+        "categorie":"Glaces",
+        "name":"Crunchy Caramel Ice Cream Dome",
+        "quantity":"2 units",
+        "price":"54,00"
+    },
+    {
+        "id":4,
+        "imageH":"images/Patissier.jpg",
+        "image":"images/P1.jpg",
+        "categorie":"Patissier",
+       "name":"Mini Apple Turnover",
+        "quantity":" 10 units",
+        "price":"49,00"
+    },
+    {
+        "id":5,
+        "imageH":"images/Salés.jpg",
+        "image":"images/S1.jpeg",
+        "categorie":"Sales",
+        "name":"Chicken turnovers",
+        "quantity":" 10 units",
+        "price":"68,00"
+    }
+    ,    
+    {
+        "id":6,
+        "imageH":"images/section.PNG",
+        "image":"images/C1.png",
+        "categorie":"Gourmandes",
+        "name":"Chocolate Crunch",
+        "quantity":" Available in 6 pcs and 10 pcs",
+        "price":"250,00"
+    },
+    {
+        "id":7,
+        "imageH":"images/Boulangerie1.jpg",
+        "image":"images/B2.jpg",
+        "name":"Multigrain Burger Bun 100g",
+        "quantity":" 4 units",
+        "categorie":"Boulangerie",
+        "price":"25,00"
+    },
+    {
+        "id":8,
+        "imageH":"images/Viennoiserie1.jpg",
+        "image":"images/V2.jpg",
+        "categorie":"Viennoiserie",
+        "name":"Mini Chocolate Croissant 30g",
+        "quantity":" 10 units",
+        "price":"46,00"
+    },
+    {
+        "id":9,
+        "imageH":"images/Glace.jpg",
+        "image":"images/G2.jpg",
+        "categorie":"Glaces",
+        "name":"Passion Fruit and Raspberry Ice Cream Dome",
+        "quantity":"2 units",
+        "price":"54,00"
+    },
+    {
+        "id":10,
+        "imageH":"images/Patissier.jpg",
+        "image":"images/P3.jpg",
+        "categorie":"Patissier",
+       "name":"Pancakes",
+        "quantity":" 4 units",
+        "price":"22,00"
+    },
+    {
+        "id":11,
+        "imageH":"images/Salés.jpg",
+        "image":"images/S2.jpeg",
+        "categorie":"Sales",
+        "name":"Mini Three-Cheese Turnovers",
+        "quantity":" 10 units",
+        "price":"68,00"
+    }
+    ,    
+    {
+        "id":12,
+        "imageH":"images/section.PNG",
+        "image":"images/C2.png",
+        "categorie":"Gourmandes",
+        "name":"Strawberry Cake",
+        "quantity":" Available in 6 pcs and 10 pcs",
+        "price":"300,00"
+    }
+ 
+]

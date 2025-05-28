@@ -1,0 +1,390 @@
+/* BestSellers.module.css */
+.bestSellers {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 90px 20px;
+}
+.scriptHeading {
+  font-family: 'Berkshire Swash', cursive;
+  font-style: italic;
+  text-align: center;
+  color: #b06666;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.mainHeading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: 'Lora', serif;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  max-width: 200px;
+}
+
+.line {
+  height: 1px;
+  background-color: #ddd;
+  flex-grow: 1;
+}
+
+.icon {
+  margin: 0 15px;
+}
+
+.featureIcon1 {
+  width: 40px;
+  height: 40px;
+}
+
+.carouselWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 5%;
+}
+
+.carouselViewport {
+  overflow: hidden;
+  width: 100%;
+  height: max-content;
+  padding: 5% 0%;
+}
+
+.carouselTrack {
+  display: flex;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.productCard {
+  min-width: 280px;
+  margin-right: 16px;
+  flex-shrink: 0;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+}
+
+.productImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.productInfo {
+  padding-top: 15px;
+}
+
+.productInfo h3 {
+  color: #1a2a3a;
+  font-size: 1.25rem;
+  text-align: center;
+  font-family: 'Lora', serif;
+  margin-bottom: 0.5rem;
+}
+
+.productInfo h3:hover {
+  color: #b06666;
+}
+
+.units {
+  text-align: center;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.prix {
+  color: #b06666;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  font-family: 'Lora', serif;
+  font-size: 1.2rem;
+}
+
+.commande {
+  background-color: white;
+  color: #b06666;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 1px solid #b06666;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.commande:hover {
+  background-color: #b06666;
+  color: white;
+}
+
+.navButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background:#b06666;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5rem;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navButton:hover:not(:disabled) {
+  background: #f0f0f0;
+  color: #b06666;
+}
+
+.navButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Modal Styles */
+.productModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.productModal {
+  background-color: white;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalFadeIn 0.3s ease;
+}
+
+.productModalContent {
+  display: flex;
+  flex-direction: row;
+}
+
+.productModalImage {
+  flex: 1;
+  max-width: 50%;
+}
+
+.productModalImage img {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.productModalDetails {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productModalName {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+  font-family: 'Lora', serif;
+}
+
+.productModalPrice {
+  font-size: 24px;
+  font-weight: 600;
+  color:#b06666;
+  margin-bottom: 20px;
+}
+
+.productModalDivider {
+  height: 1px;
+  background-color: #eee;
+  margin: 15px 0;
+  width: 100%;
+}
+
+.productModalDescription {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.productModalActions {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.quantitySelector {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.quantityBtn {
+  background: #f5f5f5;
+  border: none;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.quantityBtn:hover {
+  background: #e0e0e0;
+}
+
+.quantityValue {
+  width: 40px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.addToCartBtn {
+  flex: 1;
+  background-color:#b06666;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.addToCartBtn:hover {
+  background-color:#c06f6f;
+}
+
+.cartIcon {
+  font-size: 18px;
+}
+
+.closeModal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #333;
+  cursor: pointer;
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.closeModal:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .productModalContent {
+    flex-direction: column;
+  }
+
+  .productModalImage,
+  .productModalDetails {
+    max-width: 100%;
+  }
+
+  .productModalImage img {
+    border-radius: 10px 10px 0 0;
+    min-height: 300px;
+  max-height: 300px;
+  }
+
+  .productModal {
+    max-height: 95vh;
+  }
+
+  .productModalActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .quantitySelector {
+    justify-content: center;
+  }
+
+  .productCard {
+    min-width: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bestSellers {
+    padding: 60px 15px;
+  }
+
+  .mainHeading {
+    font-size: 2rem;
+  }
+
+  .productCard {
+    min-width: 200px;
+  }
+}

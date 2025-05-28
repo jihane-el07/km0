@@ -1,0 +1,302 @@
+.container {
+  color: #333;
+  line-height: 1.6;
+}
+
+.hero {
+  height: 450px;
+  background-image: url("../../../public/images/reserved1.jpg");
+  background-position: left bottom ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* z-index: 1; */
+  overflow: hidden;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 20px;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.content h1 {
+  font-size: 48px;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: 'Berkshire Swash', cursive;
+}
+
+.Link{
+  text-decoration: none;
+  font-family: 'Lora', serif;
+  font-size: 18px;
+  color: #fff;
+  margin: 3%;
+  font-weight: bolder;
+}
+.LinkA{
+  text-decoration: none;
+  font-family: 'Lora', serif;
+  font-size: 18px;
+  color: #b06666;
+  margin: 3%;
+  font-weight: bolder;
+}
+.div{
+  margin-top: 10%;
+}
+
+/* Main Content */
+.main {
+  background-color: white;
+  padding: 80px 0;
+}
+
+.mainContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.contentLeft {
+  max-width: 600px;
+}
+
+.intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+
+/* Typography */
+.subtitle {
+  font-size: 30px;
+  font-weight: lighter;
+  color: #b06666;
+  margin: 0;
+  line-height: 1.2;
+  font-family: 'Berkshire Swash', cursive;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 5px 0 15px;
+  color: #222;
+  font-family: 'Lora', serif;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
+  font-family: 'Lora', serif;
+  margin-bottom: 30px;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  max-width: 200px;
+}
+
+.line {
+  height: 1px;
+  background-color: #ddd;
+  flex-grow: 1;
+}
+
+.icon {
+  margin: 0 15px;
+}
+
+.featureIcon1 {
+  width: 40px;
+  height: 40px;
+}
+
+
+
+.phoneSection {
+  text-align: center;
+}
+
+.phoneLabel {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.phoneNumber {
+  font-size: 28px;
+  color: #b06666;
+  font-weight: bold;
+}
+
+/* Sidebar */
+.sidebar {
+  display: flex;
+  justify-content: center;
+}
+
+.openingHours {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 30px;
+  border: 2px dashed #ddd;
+  text-align: center;
+  min-width: 300px;
+  background-clip:border-box ; /* ensures background doesn't go under the border */
+  box-shadow: 0 0 0 15px #1a1a1a; /* adds space between border and black background */
+   transition: all 0.3s ease-in-out;
+}
+
+.sidebar:hover .lineT {
+    height: 2px;
+    background-color: #b06666;
+    flex-grow: 1;
+    width: 35%;
+    margin-left:auto;
+    margin-right: auto;
+}
+.sidebar:hover .openingHours{
+  border: 2px dashed #b06666;
+}
+.openingTitle {
+  /* font-family: "Brush Script MT", cursive; */
+  font-family: 'Berkshire Swash', cursive;
+  font-style: italic;
+  font-size: 28px;
+  color: #b06666;
+  margin: 0 0 25px 0;
+  font-weight: normal;
+}
+.lineT{
+  height: 2px;
+  background-color: #ddd;
+  flex-grow: 1;
+  width: 30%;
+  margin-left:auto;
+  margin-right: auto;
+  transition: all 0.3s ease-in-out; 
+}
+
+.timeSlot {
+  margin-bottom: 25px;
+}
+
+.timeSlot:last-child {
+  margin-bottom: 0;
+}
+
+.days {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.hours {
+  font-size: 18px;
+  color: #b06666;
+  margin-bottom: 5px;
+}
+
+.meals {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Online Reservation Section */
+.onlineReservation {
+  background-color: white;
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin-top: 10%;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .headerContent {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .heroTitle {
+    font-size: 36px;
+  }
+
+  .mainContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .mainTitle {
+    font-size: 28px;
+  }
+
+  .openingHours {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .onlineHeading {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 28px;
+  }
+
+  .mainTitle {
+    font-size: 24px;
+  }
+
+  .phoneNumber {
+    font-size: 24px;
+  }
+
+  .openingHours {
+    padding: 30px 20px;
+  }
+}
