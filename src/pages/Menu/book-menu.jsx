@@ -180,6 +180,7 @@ const menuPages = [
 export default function BookMenu() {
   const bookRef = useRef(null)
   const totalPages = menuPages.length
+  const [zoom, setZoom] = useState(1)
 
   const getCurrentPage = () => {
     return bookRef.current ? bookRef.current.pageFlip().getCurrentPageIndex() : 0;
@@ -191,6 +192,14 @@ export default function BookMenu() {
 
   const prevPage = () => {
     bookRef.current && bookRef.current.pageFlip().flipPrev();
+  };
+
+  const zoomIn = () => {
+    setZoom(prev => Math.min(prev + 0.1, 2));
+  };
+
+  const zoomOut = () => {
+    setZoom(prev => Math.max(prev - 0.1, 0.5));
   };
 
   const getDisplayedPageNumbers = () => {
@@ -218,7 +227,7 @@ export default function BookMenu() {
         </div>
       </div>
       <div className={styles.bookMenuContainer}>
-        <div className={styles.bookWrapper} ref={bookRef}>
+        <div className={styles.bookWrapper} ref={bookRef} style={{ transform: `scale(${zoom})` }}>
           <HTMLFlipBook
             width={550}
             height={733}
@@ -243,6 +252,8 @@ export default function BookMenu() {
 
         <div className={styles.controls}>
           <button className={styles.controlButton} onClick={prevPage}><ChevronLeft /></button>
+          <button className={styles.controlButton} onClick={zoomOut}><ZoomOut /></button>
+          <button className={styles.controlButton} onClick={zoomIn}><ZoomIn /></button>
           <button className={styles.controlButton} onClick={nextPage}><ChevronRight /></button>
         </div>
       </div>
