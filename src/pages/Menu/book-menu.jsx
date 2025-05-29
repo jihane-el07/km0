@@ -229,13 +229,12 @@ export default function BookMenu() {
       <div className={styles.bookMenuContainer}>
         <div className={styles.bookWrapper} ref={bookRef} style={{ transform: `scale(${zoom})` }}>
           <HTMLFlipBook
-            width={550}
-            height={733}
+            width={450}
+            height={533}
             size="stretch"
-            showPageCorners={true}
             showCover={true}
+            showPageCorners={true}
             mobileScrollSupport={true}
-            className={styles.book}
             ref={bookRef}
           >
             {menuPages.map((page) => (
