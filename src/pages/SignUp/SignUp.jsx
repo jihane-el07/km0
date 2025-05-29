@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail]=useState('')
+  const [email ,setEmail] =useState('')
   const [username, setUsername]=useState('')
   const [password ,setPassword]=useState('')
 
