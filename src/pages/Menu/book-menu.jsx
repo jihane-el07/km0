@@ -226,6 +226,17 @@ export default function BookMenu() {
           </div>
         </div>
       </div>
+      <div className={styles.intro}>
+          <h3 className={`${styles.subtitle} font-great-vibes`}>Dine Discover Delight</h3>
+          <h2 className={`${styles.title} font-playfair`}>KM0 Menu</h2>
+          <div className={styles.divider}>
+            <div className={styles.line}></div>
+            <span className={styles.icon}>
+              <img src="/images/flower.webp" className={styles.featureIcon1} alt="divider" />
+            </span>
+            <div className={styles.line}></div>
+          </div>
+        </div>
       <div className={styles.bookMenuContainer}>
         <div className={styles.bookWrapper} ref={bookRef} style={{ transform: `scale(${zoom})` }}>
           <HTMLFlipBook
