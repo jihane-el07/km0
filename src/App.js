@@ -1,6 +1,4 @@
 import './App.css';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 import IntroLayer from './pages/intro/IntroLayer';
 import Home from './pages/Home/Home';
