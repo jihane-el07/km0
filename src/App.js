@@ -12,7 +12,7 @@ import Products from './pages/Patissier/Products/Products';
 import Reservation from './pages/Reservation/Reservation';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
-
+import BookMenu from './pages/Menu/book-menu';
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -44,6 +44,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/Menu' element={<BookMenu />} />
         <Route path='/Event' element={<Events />} />
         <Route path='/Patisserie' element={<Patissier />} />
         <Route path='/:category' element={<Products />} />
