@@ -5,7 +5,7 @@
 
 .hero {
   height: 450px;
-  background-image: url("../../../public/images/reserved1.jpg");
+  background-image: url("/public/images/reserved1.jpg");
   background-position: left bottom ;
   background-size: cover;
   background-repeat: no-repeat;
