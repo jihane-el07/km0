@@ -37,7 +37,7 @@ const slides = [
     title: "Flavors of Morocco",
     subtitle: "From Tangier to Your Table",
     description: "Experience the warmth of Tangier through every bite",
-    btn: '/Event',
+    btn: '/Menu',
     btnT: 'View Menu',
   }
 ]

@@ -236,6 +236,7 @@ export default function BookMenu() {
             </span>
             <div className={styles.line}></div>
           </div>
+          <p className={`${styles.description} font-lora`}>Discover a menu crafted to bring people together. Rooted in fresh, seasonal ingredients and inspired by the joy of sharing, each dish is a celebration of flavor and community. Whether you're here for a quiet meal or a festive gathering, every bite is made to spark connection, comfort, and a reason to smile.</p>
         </div>
       <div className={styles.bookMenuContainer}>
         <div className={styles.bookWrapper} ref={bookRef} style={{ transform: `scale(${zoom})` }}>

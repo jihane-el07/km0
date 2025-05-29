@@ -106,7 +106,8 @@ const Events = () => {
             <div className={styles.line}></div>
           </div>
           <p className={`${styles.description} font-lora`}>
-          Discover a world of flavor, creativity, and community through KM0’s curated events. From exclusive culinary experiences to engaging workshops and festive holiday celebrations, there’s always something special happening. Whether you're a food lover, a curious learner, or just looking to celebrate, our events offer something for everyone. Don’t miss out—book early to secure your spot!          </p>
+          Discover a world of flavor, creativity, and community through KM0’s curated events. From exclusive culinary experiences to engaging workshops and festive holiday celebrations, there’s always something special happening. Whether you're a food lover, a curious learner, or just looking to celebrate, our events offer something for everyone. Don’t miss out—book early to secure your spot! 
+         </p>
         </div>
        
         
