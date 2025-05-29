@@ -11,6 +11,8 @@ import Patissier from './pages/Patissier/Patissier';
 import Products from './pages/Patissier/Products/Products';
 import ProductCategory from './pages/Patissier/Products/ProductCategory';
 import Reservation from './pages/Reservation/Reservation';
+import Login from './pages/Login/Login';
+import SignUp from './pages/SignUp/SignUp';
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -42,6 +44,8 @@ function App() {
         {/* <Route path='/Products' element={<Products />} /> */}
         <Route path="/:category" element={<Products />} />
         <Route path="/Book-Table" element={<Reservation />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
       </Routes>
       <Footer/>
     </div>
