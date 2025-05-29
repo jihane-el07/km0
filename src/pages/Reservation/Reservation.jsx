@@ -61,7 +61,7 @@ const Reservation = () => {
 
         {/* Online Reservation Section */}
         <section className={styles.onlineReservation}>
-          <div className={styles.intro}>
+          <div className={styles.intro2}>
               <h3 className={`${styles.subtitle} font-great-vibes`}>Online Reservation</h3>
               <h2 className={`${styles.title} font-playfair`}>No need to Wait for Table</h2>
               <div className={styles.divider}>
