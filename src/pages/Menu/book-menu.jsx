@@ -232,11 +232,7 @@ export default function BookMenu() {
             width={550}
             height={733}
             size="stretch"
-            minWidth={315}
-            maxWidth={1000}
-            minHeight={400}
-            maxHeight={1533}
-            maxShadowOpacity={0.5}
+            showPageCorners={true}
             showCover={true}
             mobileScrollSupport={true}
             className={styles.book}
