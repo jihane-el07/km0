@@ -233,7 +233,14 @@
   height: 90vh;
   width: 100%;
 }
-
+.coverContent2{
+  background-image: url('/public/images/backmenu2.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 90vh;
+  width: 100%;
+}
 .pageContent {
   height: 100%;
   width: 100%;

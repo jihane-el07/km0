@@ -147,24 +147,7 @@ const menuPages = [
     id: 5,
     content: (
       <div className={styles.coverPage}>
-        <div className={styles.coverContent}>
-          <h2>Nos Horaires</h2>
-          <div className={styles.hours}>
-            <p>Lundi au Vendredi</p>
-            <p className={styles.time}>7h00 - 00h00</p>
-            <p>Samedi et Dimanche</p>
-            <p className={styles.time}>7h00 - 00h30</p>
-          </div>
-          <div className={styles.contact}>
-            <p>Ghandouri, Tanger</p>
-            <p>+212 5 39 31 11 12</p>
-            <p>+212 6 37 55 41 11</p>
-          </div>
-          <div className={styles.social}>
-            <a href="#" className={styles.socialLink}>Facebook</a>
-            <a href="#" className={styles.socialLink}>Instagram</a>
-            <a href="#" className={styles.socialLink}>Tripadvisor</a>
-          </div>
+        <div className={styles.coverContent2}>
         </div>
       </div>
     ),
