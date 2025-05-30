@@ -1,9 +1,11 @@
 import styles from "./Footer.module.css"
 import { Facebook, Twitter, Send } from "lucide-react"
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const location = useLocation();
   return (
-    <footer className={styles.footer}>
+    <footer className={`${styles.footer} ${location.pathname === '/contact' ? styles.noMarginTop : ''}`}>
       <div className={styles.topSection}>
         <div className={styles.socialSection}>
           <p className={styles.followText}>FOLLOW US :</p>

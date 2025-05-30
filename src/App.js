@@ -13,6 +13,7 @@ import Reservation from './pages/Reservation/Reservation';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import BookMenu from './pages/Menu/book-menu';
+import Contact from './pages/Contact/Contact';
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -51,6 +52,7 @@ function App() {
         <Route path='/Book-Table' element={<Reservation />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/Contact' element={<Contact/>}/>
       </Routes>
 
       {!hideNavAndFooter && <Footer />}

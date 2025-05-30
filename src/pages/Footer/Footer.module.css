@@ -8,6 +8,9 @@
   width: 100%;
 }
 
+.noMarginTop {
+  margin-top: 0 !important;
+}
 .topSection {
   display: flex;
   justify-content: space-between;
