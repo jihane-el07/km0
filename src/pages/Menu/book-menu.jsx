@@ -26,12 +26,6 @@ const menuPages = [
     content: (
       <div className={styles.coverPage}>
         <div className={styles.coverContent}>
-          <h1>La Vue</h1>
-          <h2>Restaurant & Café</h2>
-          <div className={styles.coverImage}>
-            <img src="/images/restaurant-view.jpg" alt="Restaurant View" />
-          </div>
-          <p className={styles.coverSubtitle}>Une expérience gastronomique unique</p>
         </div>
       </div>
     ),
