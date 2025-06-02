@@ -226,6 +226,7 @@
   text-align: center;
   font-family: 'Lora', serif;
   width: 100%;
+  height: 100%;
 }
 
 .coverContent {
@@ -555,7 +556,57 @@
   width: 100%;
   max-width: 400px;
 }
-
+@media screen and (max-height:591px){
+  .itemImageContainer {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 0rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.menuImage {
+  width: 90%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+  .menuItemPage {
+  padding: 0rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fbf1f1;
+}
+.itemTitle {
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 2rem;
+  color: #630707;
+  margin-bottom: 0rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+  .itemDetails {
+  width: 100%;
+  margin-top: 15px;
+}
+.itemDescription {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  text-align: center;
+}
+.itemDescription {
+  font-family: 'Lora', serif;
+  font-size: -1rem;
+  color: #666;
+  line-height: 1.6;
+  text-align: center;
+}
+}
 .itemDescription {
   font-family: 'Lora', serif;
   font-size: 1rem;
