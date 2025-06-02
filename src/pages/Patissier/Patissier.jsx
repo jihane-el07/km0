@@ -7,31 +7,14 @@ import BestSellers from "./Best/BestSellers"
 import GourmetSection from "./Section/GourmetSection"
 import Delivery from "./livraison/Delivery"
 
-const Patissier = () => {
-  const [dropdownOpen, setDropdownOpen] = useState({
-    produits: false,
-    creations: false,
-  })
+const Patissier = ({ addToCart }) => 
+ {
 
-  const toggleDropdown = (menu) => {
-    setDropdownOpen({
-      ...dropdownOpen,
-      [menu]: !dropdownOpen[menu],
-    })
-  }
-const [cartCount, setCartCount] = useState(0);
-const [totalPrice, setTotalPrice] = useState(0);
-  
- const addToCart = (price, quantity = 1) => {
-  setCartCount(prev => prev + quantity);
-  const priceNumber = parseFloat(price.replace(',', '.'));
-  setTotalPrice(prev => parseFloat((prev + priceNumber * quantity).toFixed(2)));
-};
 
 
   return (
     <div className={styles.homePage}>
-     <PatissierHero cartCount={cartCount} totalPrice={totalPrice} />
+     <PatissierHero/>
       <Produits  />
       <BestSellers addToCart={addToCart} />
       <GourmetSection />

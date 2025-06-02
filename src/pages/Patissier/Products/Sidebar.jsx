@@ -1,4 +1,3 @@
-"use client"
 
 import { useState } from "react"
 import { Search, ChevronDown, ChevronRight } from "lucide-react"
@@ -7,21 +6,12 @@ import { useNavigate } from "react-router-dom"
 
 const Sidebar = () => {
   const [priceRange, setPriceRange] = useState([10, 50])
-  const [searchTerm, setSearchTerm] = useState("")
-  const [expandedCategories, setExpandedCategories] = useState({
-    boulangerie: true,
-    patisserie: true,
-    glaces: true,
-    sales: true,
-  })
-
-
   const navigate = useNavigate()
 
   const categories = [
     { name: "Boulangerie", link: "/Boulangerie" },
     { name: "Viennoiserie", link: "/Viennoiserie" },
-    { name: "Patissier", link: "/Patisserie" },
+    { name: "Patissier", link: "/Patissier" },
     { name: "Glaces", link: "/Glaces" },
     { name: "Sales", link: "/Sales" },
     { name: "Gourmet Creations", link: "/Gourmandes" },
@@ -58,7 +48,6 @@ const handleCategoryClick = (category) => {
         <h3 className={styles.categoriesTitle}>NOS PRODUITS</h3>
 
         <div className={styles.categoryGroup}>
-          {/* <div className={`${styles.categoryItem} ${styles.active}`} onClick={() => toggleCategory("boulangerie")}> */}
             {categories.map((category, index) => (
           <div
             key={index}
@@ -69,8 +58,6 @@ const handleCategoryClick = (category) => {
           </div>
         ))}
           </div>
-        {/* </div> */}
-
       </div>
     </aside>
   )

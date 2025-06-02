@@ -1,7 +1,21 @@
 import { ChevronRight } from "lucide-react"
 import styles from "./Breadcrumb.module.css"
+import products from "../../../data/products.json"
+import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 const Breadcrumb = () => {
+  const { category } = useParams()
+  const [filteredProducts, setFilteredProducts] = useState([])
+  
+    useEffect(() => {
+      if (category) {
+        const matched = products.filter(
+          (product) => product.categorie.toLowerCase() === category.toLowerCase()
+        )
+        setFilteredProducts(matched)
+      }
+    }, [category])
   return (
     <nav className={styles.breadcrumb}>
       <div className={styles.container}>
@@ -9,7 +23,7 @@ const Breadcrumb = () => {
           ACCUEIL
         </a>
         <ChevronRight className={styles.separator} />
-        <span className={styles.breadcrumbCurrent}>BOULANGERIE</span>
+        <span className={styles.breadcrumbCurrent}>{category}</span>
       </div>
     </nav>
   )

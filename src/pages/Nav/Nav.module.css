@@ -30,3 +30,33 @@
 .navLink:hover.scrolled {
   color: #b06666;
 }
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cart span{
+  color: #333;
+}
+.cartIcon {
+  position: relative;
+  font-size: 18px;
+}
+
+.cartCount {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #b06666;
+  font-size: 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Icon{
+  color: #333;
+}
+

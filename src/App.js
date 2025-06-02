@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import IntroLayer from './pages/intro/IntroLayer';
 import Home from './pages/Home/Home';
@@ -27,12 +27,26 @@ const ScrollToTop = () => {
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
+   const [cartCount, setCartCount] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const addToCart = (price, quantity = 1) => {
+    const priceNumber = parseFloat(price.replace(',', '.'));
+    setCartCount(prev => prev + quantity);
+    setTotalPrice(prev => parseFloat((prev + priceNumber * quantity).toFixed(2)));
+  };
+
+
+
 
   useEffect(() => {
     if (window.location.pathname !== '/') {
       navigate('/');
     }
   }, []);
+ 
+    
+
+  
 
   // Hide Nav & Footer on login and signup pages
   const hideNavAndFooter = location.pathname === '/login' || location.pathname === '/signup';
@@ -41,13 +55,12 @@ function App() {
     <div className="App">
       <ScrollToTop />
       <IntroLayer />
-      {!hideNavAndFooter && <Nav />}
-
+      {!hideNavAndFooter && <Nav cartCount={cartCount} totalPrice={totalPrice}  />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/Menu' element={<BookMenu />} />
         <Route path='/Event' element={<Events />} />
-        <Route path='/Patisserie' element={<Patissier />} />
+        <Route path='/Patisserie' element={<Patissier   addToCart={addToCart} cartCount={cartCount} totalPrice={totalPrice} />} />
         <Route path='/:category' element={<Products />} />
         <Route path='/Book-Table' element={<Reservation />} />
         <Route path='/signup' element={<SignUp />} />

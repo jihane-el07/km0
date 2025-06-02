@@ -24,7 +24,6 @@ const ProductCategory = () => {
 
   return (
     <div className={styles.productGrid}>
-
       <div className={styles.hero}>
         <img src={`/${heroImage}`} alt={category} className={styles.heroImage} />
         <div className={styles.heroOverlay}>
@@ -46,11 +45,9 @@ const ProductCategory = () => {
                     <span className={styles.currency}>DH</span>
                    
                   </div>
-                    <button 
-                      className={styles.commande} 
-                      >
+                    <button className={styles.commande} >
                       Add to cart
-                      </button>
+                    </button>
                 </div>
               </div>
             ))
