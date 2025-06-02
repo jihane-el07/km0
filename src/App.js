@@ -42,7 +42,6 @@ function App() {
       <ScrollToTop />
       <IntroLayer />
       {!hideNavAndFooter && <Nav />}
-
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/Menu' element={<BookMenu />} />
@@ -54,7 +53,6 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/Contact' element={<Contact/>}/>
       </Routes>
-
       {!hideNavAndFooter && <Footer />}
     </div>
   );
