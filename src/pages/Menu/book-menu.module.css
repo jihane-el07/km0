@@ -556,7 +556,7 @@
   width: 100%;
   max-width: 400px;
 }
-@media screen and (max-height:591px){
+@media screen and (max-height:700px){
   .itemImageContainer {
   width: 100%;
   max-width: 300px;
