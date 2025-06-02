@@ -49,17 +49,18 @@ export default function Nav({ cartCount, totalPrice }) {
 
         {/* Right Side Links */}
         <ul className="navbar-nav d-flex flex-row right gap-5">
-            {location.pathname === '/Patisserie' && (
-              <div className={styles.userActions}>
-                <a href="#cart" className={styles.cart}>
-                  <span>{(totalPrice || 0).toFixed(2)} DH</span>
-                  <div className={styles.cartIcon}>
-                    <span className={styles.cartCount}>{cartCount}</span>
-                    <ShoppingBag className={styles.Icon} />
-                  </div>
-                </a>
+           {(location.pathname === '/Patisserie' || /^\/[^/]+$/.test(location.pathname)) && (
+          <div className={styles.userActions}>
+            <a href="#cart" className={styles.cart}>
+              <span>{(totalPrice || 0).toFixed(2)} DH</span>
+              <div className={styles.cartIcon}>
+                <span className={styles.cartCount}>{cartCount}</span>
+                <ShoppingBag className={styles.Icon} />
               </div>
-            )}
+            </a>
+          </div>
+        )}
+
           {['/login', '/signup', '/Book-Table'].map((path, i) => (
             <li className="nav-item" key={i}>
               <Link

@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react"
 import styles from "./Breadcrumb.module.css"
 import products from "../../../data/products.json"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 const Breadcrumb = () => {
@@ -19,9 +19,9 @@ const Breadcrumb = () => {
   return (
     <nav className={styles.breadcrumb}>
       <div className={styles.container}>
-        <a href="#" className={styles.breadcrumbLink}>
+        <Link to='/' className={styles.breadcrumbLink}>
           ACCUEIL
-        </a>
+        </Link>
         <ChevronRight className={styles.separator} />
         <span className={styles.breadcrumbCurrent}>{category}</span>
       </div>

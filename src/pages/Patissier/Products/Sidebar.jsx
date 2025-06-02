@@ -21,27 +21,6 @@ const handleCategoryClick = (category) => {
   }
   return (
     <aside className={styles.sidebar}>
-      {/* Price Filter */}
-      <div className={styles.filterSection}>
-        <h3 className={styles.filterTitle}>FILTRE PAR PRIX</h3>
-        <div className={styles.priceFilter}>
-          <div className={styles.priceRange}>
-            <input
-              type="range"
-              min="10"
-              max="50"
-              value={priceRange[1]}
-              onChange={(e) => setPriceRange([priceRange[0], Number.parseInt(e.target.value)])}
-              className={styles.rangeSlider}
-            />
-          </div>
-          <div className={styles.priceDisplay}>
-            Prix : {priceRange[0]} DH — {priceRange[1]} DH
-          </div>
-          <button className={styles.filterButton}>FILTRER</button>
-        </div>
-      </div>
-
 
       {/* Product Categories */}
       <div className={styles.categoriesSection}>

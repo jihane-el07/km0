@@ -2,6 +2,7 @@
   background: #f8f8f8;
   padding: 1rem 0;
   border-bottom: 1px solid #e5e5e5;
+  font-family: 'Lora', serif;
 }
 
 .container {
@@ -22,7 +23,7 @@
 }
 
 .breadcrumbLink:hover {
-  color: #d4af37;
+   color: #b06666;
 }
 
 .separator {
@@ -32,7 +33,7 @@
 }
 
 .breadcrumbCurrent {
-  color: #d4af37;
+  color: #b06666;
   font-size: 14px;
   font-weight: 600;
 }

@@ -84,7 +84,7 @@
     {
         "id":10,
         "imageH":"images/Patissier.jpg",
-        "image":"images/P3.jpg",
+        "image":"images/P3.png",
         "categorie":"Patissier",
        "name":"Pancakes",
         "quantity":" 4 units",
@@ -108,6 +108,174 @@
         "name":"Strawberry Cake",
         "quantity":" Available in 6 pcs and 10 pcs",
         "price":"300,00"
+    }
+    ,
+     {
+        "id":13,
+        "imageH":"images/Boulangerie1.jpg",
+        "image":"images/B8.jpg",
+        "name":"Assortment of 20 Mini Baguettes, 50g each",
+        "quantity":" 20 units",
+        "categorie":"Boulangerie",
+        "price":"50,00"
+    },
+    {
+        "id":14,
+        "imageH":"images/Viennoiserie1.jpg",
+        "image":"images/V3.jpg",
+        "categorie":"Viennoiserie",
+        "name":"Mini Swiss Pastry – 30g",
+        "quantity":" 10 units",
+        "price":"48,00"
+    },
+    {
+        "id":15,
+        "imageH":"images/Glace.jpg",
+        "image":"images/G8.jpg",
+        "categorie":"Glaces",
+        "name":"Chocolate Ice Cream",
+        "quantity":" 1/2 liter tub",
+        "price":"60,00"
+    },
+    {
+        "id":16,
+        "imageH":"images/Patissier.jpg",
+        "image":"images/P6.jpg",
+        "categorie":"Patissier",
+       "name":"Lemon Tartlets",
+        "quantity":" 6 units",
+        "price":"36,00"
+    },
+    {
+        "id":17,
+        "imageH":"images/Salés.jpg",
+        "image":"images/S11.png",
+        "categorie":"Sales",
+        "name":"Mini chicken and praline pastillas – 40g, 5.5 cm",
+        "quantity":" 6 units",
+        "price":"68,00"
+    }
+    ,    
+    {
+        "id":18,
+        "imageH":"images/section.PNG",
+        "image":"images/C5.jpg",
+        "categorie":"Gourmandes",
+        "name":"Raspberry Cheesecake ",
+        "quantity":" Serves 10 people",
+        "price":"240,00"
+    }
+    ,
+     {
+        "id":19,
+        "imageH":"images/Boulangerie1.jpg",
+        "image":"images/B9.jpg",
+        "name":"Assortment of Mini Milk Buns",
+        "quantity":" 12 units",
+        "categorie":"Boulangerie",
+        "price":"25,00"
+    },
+    {
+        "id":20,
+        "imageH":"images/Viennoiserie1.jpg",
+        "image":"images/V7.jpg",
+        "categorie":"Viennoiserie",
+        "name":"Large Twist Pastry – 70g",
+        "quantity":" 12 units",
+        "price":"42,00"
+    },
+    {
+        "id":21,
+        "imageH":"images/Glace.jpg",
+        "image":"images/G16.png",
+        "categorie":"Glaces",
+        "name":"Sorbet Mojito",
+        "quantity":"Pot 1/2 Litre",
+        "price":"54,00"
+    },
+    {
+        "id":22,
+        "imageH":"images/Patissier.jpg",
+        "image":"images/P10.jpg",
+        "categorie":"Patissier",
+       "name":"Fondants Individuels 120g",
+        "quantity":" 2 units",
+        "price":"49,00"
+    },
+    {
+        "id":23,
+        "imageH":"images/Salés.jpg",
+        "image":"images/S8.png",
+        "categorie":"Sales",
+        "name":"Vietnamese Spring Rolls",
+        "quantity":" 3 units",
+        "price":"40,00"
+    }
+    ,    
+    {
+        "id":24,
+        "imageH":"images/section.PNG",
+        "image":"images/C6.png",
+        "categorie":"Gourmandes",
+        "name":"Chocolate Cheesecake",
+        "quantity":" 10 people",
+        "price":"250,00"
+    }
+    ,
+      {
+        "id":25,
+        "imageH":"images/Boulangerie1.jpg",
+        "image":"images/B11.jpg",
+        "name":"Plain Toast Bread 1100g",
+        "quantity":" 1 units",
+        "categorie":"Boulangerie",
+        "price":"32,00"
+    },
+    {
+        "id":26,
+        "imageH":"images/Viennoiserie1.jpg",
+        "image":"images/V8.jpg",
+        "categorie":"Viennoiserie",
+        "name":"Large Swiss Bread 70g",
+        "quantity":" 12 units",
+        "price":"60,00"
+    },
+    {
+        "id":27,
+        "imageH":"images/Glace.jpg",
+        "image":"images/G7.jpg",
+        "categorie":"Glaces",
+        "name":"Strawberry Ice Cream",
+        "quantity":"Pot 1/2 Litre",
+        "price":"60,00"
+    },
+    {
+        "id":28,
+        "imageH":"images/Patissier.jpg",
+        "image":"images/P15.jpg",
+        "categorie":"Patissier",
+       "name":"Caramel Muffins 100g",
+        "quantity":" 2 units",
+        "price":"25,00"
+    },
+    {
+        "id":29,
+        "imageH":"images/Salés.jpg",
+        "image":"images/S10.jpg",
+        "categorie":"Sales",
+        "name":"Vietnamese Spring Rolls",
+        "quantity":" 3 units",
+        "price":"40,00"
+    }
+    ,    
+    {
+        "id":30,
+        "imageH":"images/section.PNG",
+        "image":"images/C3.png",
+        "categorie":"Gourmandes",
+        "name":"Strawberry Tart",
+        "quantity":" 10 people",
+        "price":"240,00"
     }
  
 ]
