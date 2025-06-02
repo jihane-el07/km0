@@ -67,7 +67,6 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/Contact' element={<Contact/>}/>
       </Routes>
-
       {!hideNavAndFooter && <Footer />}
     </div>
   );

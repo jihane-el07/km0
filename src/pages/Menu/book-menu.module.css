@@ -233,7 +233,30 @@
   height: 90vh;
   width: 100%;
 }
-
+.coverContent2{
+  background-image: url('/public/images/backmenu2.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 90vh;
+  width: 100%;
+}
+.coverContent3{
+  background-image: url('/public/images/2pagemenu.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 90vh;
+  width: 100%;
+}
+.coverContentfix{
+  background-image: url('/public/images/fixmenupage.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 90vh;
+  width: 100%;
+}
 .pageContent {
   height: 100%;
   width: 100%;
