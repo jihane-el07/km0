@@ -1,6 +1,6 @@
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
-import { Route, Routes, useLocation, useNavigate, Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 
 import IntroLayer from './pages/intro/IntroLayer';
 import Home from './pages/Home/Home';
@@ -15,6 +15,8 @@ import Login from './pages/Login/Login';
 import BookMenu from './pages/Menu/book-menu';
 import Contact from './pages/Contact/Contact';
 import Verification from './pages/Verification/Verification';
+import VerificationDetails from './pages/Verification/VerificationDetails';
+// import Cart from './pages/Patissier/Cart/Cart';
 
 // Protected Route for Verifiers
 const ProtectedVerifierRoute = ({ children }) => {
@@ -118,6 +120,7 @@ const PublicRoute = ({ children }) => {
   return children;
 };
 
+import Cart from './pages/Patissier/Cart/Cart';
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -199,7 +202,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <Router>
       <ScrollToTop />
       {!isAuthenticated && <IntroLayer />}
       {!hideNavAndFooter && <Nav cartCount={cartCount} totalPrice={totalPrice} onLogout={handleLogout} isAuthenticated={isAuthenticated} />}
@@ -251,7 +254,7 @@ function App() {
         } />
         <Route path='/verification/:reservationId' element={
           <ProtectedVerifierRoute>
-            <Verification />
+            <VerificationDetails />
           </ProtectedVerifierRoute>
         } />
         <Route path='/:category' element={
@@ -260,9 +263,9 @@ function App() {
           </PublicRoute>
         } />
       </Routes>
-      {!hideNavAndFooter && <Footer />}
-    </div>
-  );
+      {!hideNavAndFooter && <Nav cartCount={cartCount} totalPrice={totalPrice} />}
+    </Router>
+  )
 }
 
 export default App;

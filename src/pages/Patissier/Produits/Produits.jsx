@@ -9,7 +9,7 @@ export default function Produits() {
       image: "./images/prd.png",
       title: "BAKERY",
       name: "Boulangerie",
-      link: "/Boulangerie",
+      link: "/Bakery",
       description:
         "Discover our pure sourdough breads—delicious and full of flavor for all your cravings. The perfect companion to your everyday meals.",
     },
@@ -23,9 +23,9 @@ export default function Produits() {
     },
     {
       image: "./images/prd2.png",
-      title: "PÂTISSERIE",
-      name: "Patissier",
-      link: "/Patissier",
+      title: "PASTRY",
+      name: "Pastry ",
+      link: "/Pastry",
       description:
         "Crunchy, creamy, crispy, sweet, and full of indulgence... to enjoy with family, friends, or on your own.",
     },
@@ -33,15 +33,15 @@ export default function Produits() {
       image: "./images/prd3.png",
       title: "ICE CREAM",
       name: "Glaces",
-      link: "/Glaces",
+      link: "/Ice-Creams",
       description:
         "Taste our signature artisanal ice creams — irresistibly smooth, incredibly flavorful, and endlessly creamy.",
     },
     {
       image: "./images/prd4.png",
       title: "SAVOURY",
-      name: "Sales",
-      link: "/Sales",
+      name: "Savory",
+      link: "/Savory",
       description:
         "Discover our selection of crispy, flavorful savoury treats — perfect to serve and share with your guests.",
     },

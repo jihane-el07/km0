@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './Nav.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { ShoppingBag, AlertCircle } from "lucide-react"
+import { ShoppingBag, AlertCircle } from "lucide-react";
 import axios from 'axios';
 
 export default function Nav({ cartCount, totalPrice }) {
@@ -51,6 +51,7 @@ export default function Nav({ cartCount, totalPrice }) {
     <>
       <nav className={`navbar navbar-expand-sm ${scrolled ? styles.scrolled : ''} ${styles.navbar}`}>
         <div className="container-fluid d-flex justify-content-between align-items-center ps-5 pe-5">
+          
           {/* Left Side Links */}
           <ul className="navbar-nav left d-flex flex-row gap-3">
             <li className="nav-item">
@@ -72,21 +73,23 @@ export default function Nav({ cartCount, totalPrice }) {
 
           {/* Center Logo */}
           <div className="text-center">
-            <Link className="nav-link" to="/"><img src="images/M.png" alt="morocco map" width={100} style={{ marginTop: "10px" }} /></Link>
+            <Link className="nav-link" to="/">
+              <img src="images/M.png" alt="morocco map" width={100} style={{ marginTop: "10px" }} />
+            </Link>
           </div>
 
           {/* Right Side Links */}
-          <ul className="navbar-nav d-flex flex-row right gap-5">
+          <ul className="navbar-nav d-flex flex-row right gap-4 align-items-center">
             {(location.pathname === '/Patisserie' || /^\/[^/]+$/.test(location.pathname)) && (
-              <div className={styles.userActions}>
-                <a href="#cart" className={styles.cart}>
+              <li className="nav-item">
+                <Link to="/Cart" className={styles.cart}>
                   <span>{(totalPrice || 0).toFixed(2)} DH</span>
                   <div className={styles.cartIcon}>
                     <span className={styles.cartCount}>{cartCount}</span>
                     <ShoppingBag className={styles.Icon} />
                   </div>
-                </a>
-              </div>
+                </Link>
+              </li>
             )}
 
             {isLoggedIn ? (
@@ -108,6 +111,7 @@ export default function Nav({ cartCount, totalPrice }) {
                 </li>
               </>
             )}
+
             <li className="nav-item">
               <Link
                 className={`${styles.navLink} ${scrolled ? styles.scrolled : ''} fs-5`}
