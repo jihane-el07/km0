@@ -8,6 +8,7 @@
     position: relative;
 }
 
+/* Scanner container */
 .scannerContainer {
     background: white;
     border-radius: 12px;
@@ -16,30 +17,69 @@
     max-width: 600px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
+    position: relative;
 }
 
 .scannerContainer h1 {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     color: #333;
     font-size: 1.5rem;
 }
 
-.scanner {
+/* Scanner wrapper with overlay */
+.scannerWrapper {
+    position: relative;
     width: 100%;
     min-height: 300px;
-    background-color: #f0f0f0;
-    border: 2px dashed #ccc;
+    background-color: #000;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
     overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.scanner {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: relative;
 }
 
 .scanner video {
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
+    object-fit: cover;
+}
+
+/* Scanner overlay */
+.scannerOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.scanFrame {
+    width: 250px;
+    height: 250px;
+    border: 3px solid #4CAF50;
+    border-radius: 8px;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7);
+}
+
+.scanHint {
+    margin-top: 20px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
 .cameraPermissionPrompt {
@@ -77,6 +117,7 @@
     font-size: 0.9rem;
 }
 
+/* Verification card */
 .verificationCard {
     background: white;
     border-radius: 12px;
@@ -327,8 +368,17 @@
         font-size: 0.875rem;
     }
 
-    .scanner {
-        max-width: 100%;
+    .scannerWrapper {
+        min-height: 250px;
+    }
+    
+    .scanFrame {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .scanHint {
+        font-size: 1rem;
     }
 
     .logoutButton {
@@ -441,8 +491,9 @@
         width: 100%;
     }
 
-    .scanner {
+    .scannerWrapper {
         max-width: 350px;
+        margin: 0 auto;
     }
 }
 
@@ -501,11 +552,6 @@
     .backButton {
         padding: 0.75rem;
         font-size: 0.9rem;
-    }
-
-    .scanner {
-        max-width: 100%;
-        border-width: 1px;
     }
 
     .scannerInstructions {
@@ -609,13 +655,21 @@
     .scannerInstructions {
         font-size: 0.75rem;
     }
+    
+    .scanFrame {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .scanHint {
+        font-size: 0.9rem;
+    }
 }
 
 /* Landscape Mode for Phones */
 @media (max-height: 500px) and (orientation: landscape) {
     .container {
         padding: 1rem;
-
     }
 
     .verificationCard,
@@ -637,7 +691,17 @@
         margin-top: 0.75rem;
     }
 
-    .scanner {
+    .scannerWrapper {
         max-height: 200px;
+    }
+    
+    .scanFrame {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .scanHint {
+        font-size: 0.9rem;
+        margin-top: 10px;
     }
 }
