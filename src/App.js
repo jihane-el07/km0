@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import IntroLayer from './pages/intro/IntroLayer';
@@ -14,6 +14,110 @@ import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import BookMenu from './pages/Menu/book-menu';
 import Contact from './pages/Contact/Contact';
+import Verification from './pages/Verification/Verification';
+
+// Protected Route for Verifiers
+const ProtectedVerifierRoute = ({ children }) => {
+  const [isVerifier, setIsVerifier] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkVerifier = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          setIsVerifier(false);
+          setLoading(false);
+          return;
+        }
+
+        const response = await fetch('https://km0-api.vercel.app/auth/profile', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) {
+          setIsVerifier(false);
+          setLoading(false);
+          return;
+        }
+
+        const userData = await response.json();
+        setIsVerifier(userData.role === 'verifier');
+      } catch (error) {
+        console.error('Auth check error:', error);
+        setIsVerifier(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkVerifier();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!isVerifier) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+};
+
+// Public Route - Only accessible when not logged in
+const PublicRoute = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          setIsAuthenticated(false);
+          setLoading(false);
+          return;
+        }
+
+        const response = await fetch('https://km0-api.vercel.app/auth/profile', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) {
+          setIsAuthenticated(false);
+          setLoading(false);
+          return;
+        }
+
+        const userData = await response.json();
+        setIsAuthenticated(userData.role === 'verifier');
+      } catch (error) {
+        console.error('Auth check error:', error);
+        setIsAuthenticated(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isAuthenticated) {
+    return <Navigate to="/verification" replace />;
+  }
+
+  return children;
+};
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -27,45 +131,134 @@ const ScrollToTop = () => {
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
-   const [cartCount, setCartCount] = useState(0);
+  const [cartCount, setCartCount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
   const addToCart = (price, quantity = 1) => {
     const priceNumber = parseFloat(price.replace(',', '.'));
     setCartCount(prev => prev + quantity);
     setTotalPrice(prev => parseFloat((prev + priceNumber * quantity).toFixed(2)));
   };
 
-
-
-
   useEffect(() => {
-    if (window.location.pathname !== '/') {
-      navigate('/');
-    }
-  }, []);
- 
-    
+    const checkAuth = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          setIsAuthenticated(false);
+          setIsLoading(false);
+          return;
+        }
 
-  
+        const response = await fetch('https://km0-api.vercel.app/auth/profile', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
 
-  // Hide Nav & Footer on login and signup pages
-  const hideNavAndFooter = location.pathname === '/login' || location.pathname === '/signup';
+        if (!response.ok) {
+          setIsAuthenticated(false);
+          setIsLoading(false);
+          return;
+        }
+
+        const userData = await response.json();
+        const isVerifier = userData.role === 'verifier';
+        setIsAuthenticated(isVerifier);
+
+        // If user is a verifier and not already on verification page, redirect them
+        if (isVerifier && !location.pathname.startsWith('/verification')) {
+          navigate('/verification');
+        }
+      } catch (error) {
+        console.error('Auth check error:', error);
+        setIsAuthenticated(false);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkAuth();
+  }, [navigate, location.pathname]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
+    navigate('/login');
+  };
+
+  // Hide Nav & Footer on login, signup pages, and when authenticated
+  const hideNavAndFooter = location.pathname === '/login' ||
+    location.pathname === '/signup' ||
+    isAuthenticated;
+
+  if (isLoading) {
+    return null; // Don't render anything while checking authentication
+  }
 
   return (
     <div className="App">
       <ScrollToTop />
-      <IntroLayer />
-      {!hideNavAndFooter && <Nav cartCount={cartCount} totalPrice={totalPrice}  />}
+      {!isAuthenticated && <IntroLayer />}
+      {!hideNavAndFooter && <Nav cartCount={cartCount} totalPrice={totalPrice} onLogout={handleLogout} isAuthenticated={isAuthenticated} />}
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/Menu' element={<BookMenu />} />
-        <Route path='/Event' element={<Events />} />
-        <Route path='/Patisserie' element={<Patissier   addToCart={addToCart} cartCount={cartCount} totalPrice={totalPrice} />} />
-        <Route path='/:category' element={<Products />} />
-        <Route path='/Book-Table' element={<Reservation />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/Contact' element={<Contact/>}/>
+        <Route path='/' element={
+          <PublicRoute>
+            <Home />
+          </PublicRoute>
+        } />
+        <Route path='/Menu' element={
+          <PublicRoute>
+            <BookMenu />
+          </PublicRoute>
+        } />
+        <Route path='/Event' element={
+          <PublicRoute>
+            <Events />
+          </PublicRoute>
+        } />
+        <Route path='/Patisserie' element={
+          <PublicRoute>
+            <Patissier addToCart={addToCart} cartCount={cartCount} totalPrice={totalPrice} />
+          </PublicRoute>
+        } />
+        <Route path='/Book-Table' element={
+          <PublicRoute>
+            <Reservation />
+          </PublicRoute>
+        } />
+        <Route path='/signup' element={
+          <PublicRoute>
+            <SignUp />
+          </PublicRoute>
+        } />
+        <Route path='/login' element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        } />
+        <Route path='/Contact' element={
+          <PublicRoute>
+            <Contact />
+          </PublicRoute>
+        } />
+        <Route path='/verification' element={
+          <ProtectedVerifierRoute>
+            <Verification />
+          </ProtectedVerifierRoute>
+        } />
+        <Route path='/verification/:reservationId' element={
+          <ProtectedVerifierRoute>
+            <Verification />
+          </ProtectedVerifierRoute>
+        } />
+        <Route path='/:category' element={
+          <PublicRoute>
+            <Products />
+          </PublicRoute>
+        } />
       </Routes>
       {!hideNavAndFooter && <Footer />}
     </div>

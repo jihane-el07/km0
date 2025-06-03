@@ -15,7 +15,7 @@ export default function Formulaire() {
   const [editingId, setEditingId] = useState(null);
   const sectionRef = useRef(null);
 
-  const [modal, setModal] = useState({ show: false, message: '', type: '', title: '' });
+  const [modal, setModal] = useState({ show: false, message: '', type: '', title: '', onConfirm: null });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,6 +38,33 @@ export default function Formulaire() {
 
   useEffect(() => {
     fetchMyReservations();
+  }, []);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
+        const response = await fetch('https://km0-api.vercel.app/auth/profile', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (response.ok) {
+          const userData = await response.json();
+          setFormData(prev => ({
+            ...prev,
+            email: userData.email || ''
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
   }, []);
 
   const fetchMyReservations = async () => {
@@ -159,40 +186,41 @@ export default function Formulaire() {
     setEditingId(reservation._id);
   };
 
-  const showModal = (message, type = 'error', title = '') => {
-    setModal({ show: true, message, type, title });
+  const showModal = (message, type = 'error', title = '', onConfirm = null) => {
+    setModal({ show: true, message, type, title, onConfirm });
   };
 
   const hideModal = () => {
-    setModal({ show: false, message: '', type: '', title: '' });
+    setModal({ show: false, message: '', type: '', title: '', onConfirm: null });
   };
 
   const handleDelete = async (id) => {
     showModal(
       'Are you sure you want to delete this reservation?',
       'warning',
-      'Confirm Deletion'
-    );
+      'Confirm Deletion',
+      async () => {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`https://km0-api.vercel.app/reservations/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
 
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`https://km0-api.vercel.app/reservations/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`
+          if (response.ok) {
+            setReservations(prev => prev.filter(res => res._id !== id));
+            showModal('Reservation deleted successfully', 'success', 'Success');
+          } else {
+            throw new Error('Failed to delete reservation');
+          }
+        } catch (error) {
+          console.error('Error deleting reservation:', error);
+          showModal('Failed to delete reservation. Please try again.', 'error', 'Error');
         }
-      });
-
-      if (response.ok) {
-        setReservations(prev => prev.filter(res => res._id !== id));
-        showModal('Reservation deleted successfully', 'success', 'Success');
-      } else {
-        throw new Error('Failed to delete reservation');
       }
-    } catch (error) {
-      console.error('Error deleting reservation:', error);
-      showModal('Failed to delete reservation. Please try again.', 'error', 'Error');
-    }
+    );
   };
 
   const handleSubmit = async (e) => {
@@ -210,13 +238,16 @@ export default function Formulaire() {
     }
 
     const reservationData = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
       type: formData.type,
-      date: new Date(formData.date),
+      date: new Date(formData.date).toISOString(),
       time: formData.time,
       numberOfGuests: parseInt(formData.numberOfGuests),
+      status: isEditing ? "confirmed" : "pending",
+      specialRequests: formData.specialRequests || undefined,
       contactPhone: formData.phone,
       contactEmail: formData.email,
-      specialRequests: formData.specialRequests || undefined,
       ...(formData.type === 'event' && { eventType: formData.eventType })
     };
 
@@ -242,11 +273,20 @@ export default function Formulaire() {
       }
 
       const data = await response.json();
+
+      // Show appropriate message based on email sending status
+      const message = data.emailSent
+        ? 'Reservation submitted successfully! Please check your email for confirmation and QR code.'
+        : 'Reservation submitted successfully! However, there was an issue sending the confirmation email.';
+
       showModal(
-        isEditing ? 'Reservation updated successfully!' : 'Reservation submitted successfully!',
+        isEditing
+          ? 'Reservation updated successfully!'
+          : message,
         'success',
         'Success'
       );
+
       resetForm();
       fetchMyReservations();
     } catch (error) {
@@ -287,8 +327,10 @@ export default function Formulaire() {
                     Cancel
                   </button>
                   <button onClick={() => {
+                    if (modal.onConfirm) {
+                      modal.onConfirm();
+                    }
                     hideModal();
-                    // Add your confirmation action here
                   }} className={styles.confirmButton}>
                     Confirm
                   </button>

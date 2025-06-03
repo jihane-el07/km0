@@ -1,0 +1,641 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: #f5f5f5;
+    position: relative;
+}
+
+.scannerContainer {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.scannerContainer h1 {
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.scanner {
+    width: 100% !important;
+    max-width: 500px !important;
+    margin: 0 auto;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.scanner video {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+}
+
+#qr-reader {
+    width: 100% !important;
+    max-width: 500px !important;
+    margin: 0 auto;
+}
+
+#qr-reader__scan_region {
+    width: 100% !important;
+    height: auto !important;
+}
+
+#qr-reader__scan_region video {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+}
+
+#qr-reader__scan_region img {
+    display: none;
+}
+
+#qr-reader__dashboard {
+    display: none;
+}
+
+.scannerInstructions {
+    color: #666;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.verificationCard {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.header h1 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.status {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.status.pending {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.status.confirmed {
+    background: #f0fdf4;
+    color: #166534;
+}
+
+.status.cancelled {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.status.completed {
+    background: #f8fafc;
+    color: #475569;
+}
+
+.details {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.detailItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+.label {
+    font-weight: 500;
+    color: #64748b;
+}
+
+.value {
+    color: #1e293b;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.verifyButton {
+    flex: 1;
+    padding: 1rem;
+    background: #630707;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.verifyButton:hover {
+    background: #4a0505;
+}
+
+.backButton {
+    flex: 1;
+    padding: 1rem;
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.backButton:hover {
+    background: #e5e7eb;
+}
+
+.loading {
+    text-align: center;
+    color: #64748b;
+    font-size: 1.25rem;
+}
+
+.error {
+    text-align: center;
+    color: #dc2626;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.error h2 {
+    margin: 1rem 0;
+    color: #991b1b;
+}
+
+/* Modal Styles */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.modalHeader {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    gap: 0.75rem;
+}
+
+.modalHeader h3 {
+    margin: 0;
+    flex: 1;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.modalContent {
+    padding: 1.5rem;
+    color: #4b5563;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.modalFooter {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal.success .modalHeader {
+    color: #059669;
+}
+
+.modal.error .modalHeader {
+    color: #dc2626;
+}
+
+.modal.warning .modalHeader {
+    color: #d97706;
+}
+
+.okButton {
+    background: #630707;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.okButton:hover {
+    background: #4a0505;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #6b7280;
+    transition: color 0.2s;
+}
+
+.closeButton:hover {
+    color: #374151;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .verificationCard,
+    .scannerContainer {
+        padding: 1.5rem;
+    }
+
+    .header h1 {
+        font-size: 1.25rem;
+    }
+
+    .detailItem {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .label {
+        font-size: 0.875rem;
+    }
+
+    .scanner {
+        max-width: 100%;
+    }
+
+    .logoutButton {
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+.logoutButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #630707;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    z-index: 10;
+}
+
+.logo {
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+}
+
+.logoutButton:hover {
+    background: #4a0505;
+}
+
+.cameraSelector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cameraSelect {
+    padding: 0.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    background: white;
+    color: #1e293b;
+    font-size: 0.9rem;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+.cameraSelect:focus {
+    outline: none;
+    border-color: #630707;
+    box-shadow: 0 0 0 2px rgba(99, 7, 7, 0.1);
+}
+
+@media (max-width: 640px) {
+    .cameraSelector {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .cameraSelect {
+        min-width: 150px;
+    }
+}
+
+/* Tablet Media Query */
+@media (max-width: 1024px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .verificationCard,
+    .scannerContainer {
+        max-width: 90%;
+        padding: 5rem;
+        margin-top: 5rem;
+    }
+
+    .header h1 {
+        font-size: 1.4rem;
+    }
+
+    .details {
+        gap: 0.75rem;
+    }
+
+    .detailItem {
+        padding: 0.6rem;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .verifyButton,
+    .backButton {
+        width: 100%;
+    }
+
+    .scanner {
+        max-width: 350px;
+    }
+}
+
+/* Phone Media Query */
+@media (max-width: 640px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .verificationCard,
+    .scannerContainer {
+        padding: 3rem;
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    .header h1 {
+        font-size: 1.2rem;
+    }
+
+    .status {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .details {
+        gap: 0.5rem;
+    }
+
+    .detailItem {
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 0.5rem;
+    }
+
+    .label {
+        font-size: 0.8rem;
+        color: #64748b;
+    }
+
+    .value {
+        font-size: 0.9rem;
+    }
+
+    .buttonGroup {
+        margin-top: 1.5rem;
+    }
+
+    .verifyButton,
+    .backButton {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .scanner {
+        max-width: 100%;
+        border-width: 1px;
+    }
+
+    .scannerInstructions {
+        font-size: 0.8rem;
+        margin-top: 0.75rem;
+    }
+
+    .logoutButton {
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* Modal styles for mobile */
+    .modal {
+        width: 95%;
+        max-width: none;
+    }
+
+    .modalHeader {
+        padding: 0.75rem 1rem;
+    }
+
+    .modalHeader h3 {
+        font-size: 1.1rem;
+    }
+
+    .modalContent {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .modalFooter {
+        padding: 0.75rem 1rem;
+    }
+
+    .okButton {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    /* Camera selector for mobile */
+    .cameraSelector {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 0.75rem;
+    }
+
+    .cameraSelect {
+        min-width: 150px;
+        font-size: 0.8rem;
+        padding: 0.4rem;
+    }
+}
+
+/* Small Phone Media Query */
+@media (max-width: 360px) {
+    .container {
+        padding: 1rem;
+
+    }
+
+    .verificationCard,
+    .scannerContainer {
+        padding: 2rem;
+    }
+
+    .header h1 {
+        font-size: 1.1rem;
+    }
+
+    .status {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .detailItem {
+        padding: 0.4rem;
+    }
+
+    .label {
+        font-size: 0.75rem;
+    }
+
+    .value {
+        font-size: 0.85rem;
+    }
+
+    .verifyButton,
+    .backButton {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+    }
+
+    .logoutButton {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.85rem;
+    }
+
+    .scannerInstructions {
+        font-size: 0.75rem;
+    }
+}
+
+/* Landscape Mode for Phones */
+@media (max-height: 500px) and (orientation: landscape) {
+    .container {
+        padding: 1rem;
+
+    }
+
+    .verificationCard,
+    .scannerContainer {
+        padding: 0.75rem;
+    }
+
+    .header {
+        margin-bottom: 0.75rem;
+    }
+
+    .details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .buttonGroup {
+        margin-top: 0.75rem;
+    }
+
+    .scanner {
+        max-height: 200px;
+    }
+}
