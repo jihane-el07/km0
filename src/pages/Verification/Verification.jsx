@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styles from './Verification.module.css';
 import { CheckCircle2, XCircle, AlertCircle, X, QrCode, LogOut, Camera } from 'lucide-react';
-import { Html5QrcodeScanner } from 'html5-qrcode';
+import { Html5Qrcode } from 'html5-qrcode';
 
 export default function Verification() {
     const { reservationId } = useParams();
@@ -93,52 +93,41 @@ export default function Verification() {
     }, []);
 
     useEffect(() => {
-        let scanner = null;
+        let html5QrCode = null;
         if (scanning && !scannerRef.current) {
-            // Wait for the next render cycle to ensure the DOM element exists
-            setTimeout(() => {
-                const qrReaderElement = document.getElementById('qr-reader');
-                if (qrReaderElement) {
-                    try {
-                        scanner = new Html5QrcodeScanner('qr-reader', {
-                            qrbox: {
-                                width: 300,
-                                height: 300,
-                            },
-                            fps: 10,
-                            videoConstraints: {
-                                deviceId: selectedCamera,
-                                width: { ideal: 1280 },
-                                height: { ideal: 720 },
-                                facingMode: "environment"
-                            },
-                            aspectRatio: 1.0,
-                            showTorchButtonIfSupported: true,
-                            showZoomSliderIfSupported: true,
-                            defaultZoomValueIfSupported: 2,
-                            rememberLastUsedCamera: true,
-                            showScanButton: false,
-                            showStopButton: false,
-                        });
+            try {
+                html5QrCode = new Html5Qrcode("qr-reader");
+                const qrCodeSuccessCallback = (decodedText) => {
+                    handleScan(decodedText);
+                };
 
-                        scanner.render(handleScan, handleScanError)
-                            .catch(err => {
-                                console.error('Failed to start scanner:', err);
-                                showModal('Failed to start camera. Please check camera permissions.', 'error', 'Camera Error');
-                            });
-                        scannerRef.current = scanner;
-                    } catch (error) {
-                        console.error('Scanner initialization error:', error);
-                        showModal('Failed to initialize scanner. Please try again.', 'error', 'Scanner Error');
-                    }
-                }
-            }, 500);
+                html5QrCode.start(
+                    selectedCamera,
+                    {
+                        fps: 10,
+                        qrbox: { width: 250, height: 250 },
+                        aspectRatio: 1.0
+                    },
+                    qrCodeSuccessCallback,
+                    handleScanError
+                ).then(() => {
+                    console.log('Camera started successfully');
+                    scannerRef.current = html5QrCode;
+                }).catch(err => {
+                    console.error('Failed to start camera:', err);
+                    showModal('Failed to start camera. Please check camera permissions.', 'error', 'Camera Error');
+                });
+            } catch (error) {
+                console.error('Scanner initialization error:', error);
+                showModal('Failed to initialize scanner. Please try again.', 'error', 'Scanner Error');
+            }
         }
 
         return () => {
             if (scannerRef.current) {
-                scannerRef.current.clear()
-                    .catch(err => console.error('Failed to clear scanner:', err));
+                scannerRef.current.stop().catch(err => {
+                    console.error('Failed to stop scanner:', err);
+                });
                 scannerRef.current = null;
             }
         };
@@ -160,8 +149,9 @@ export default function Verification() {
     const handleCameraChange = (event) => {
         setSelectedCamera(event.target.value);
         if (scannerRef.current) {
-            scannerRef.current.clear()
-                .catch(err => console.error('Failed to clear scanner:', err));
+            scannerRef.current.stop().catch(err => {
+                console.error('Failed to stop scanner:', err);
+            });
             scannerRef.current = null;
         }
         // Force scanner re-initialization
