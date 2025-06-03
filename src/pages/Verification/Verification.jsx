@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styles from './Verification.module.css';
 import { CheckCircle2, XCircle, AlertCircle, X, QrCode, LogOut } from 'lucide-react';
-import { Html5Qrcode, Html5QrcodeSupportedFormats } from 'html5-qrcode';
+import { QrReader } from 'react-qr-reader';
 
 export default function Verification() {
     const { reservationId } = useParams();
@@ -64,101 +64,23 @@ export default function Verification() {
         checkAuth();
     }, [navigate, reservationId]);
 
-    useEffect(() => {
-        let html5QrCode = null;
-        if (scanning && !scannerRef.current) {
-            try {
-                // Initialize the scanner with a smaller viewport
-                html5QrCode = new Html5Qrcode("qr-reader", {
-                    formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
-                    verbose: false
-                });
+    const handleScan = (result) => {
+        if (!result) return;
 
-                const qrCodeSuccessCallback = (decodedText) => {
-                    handleScan(decodedText);
-                };
-
-                // First try to get available cameras
-                Html5Qrcode.getCameras().then(devices => {
-                    if (devices && devices.length) {
-                        // Try to use the back camera first, then fallback to any camera
-                        const backCamera = devices.find(device =>
-                            device.label.toLowerCase().includes('back') ||
-                            device.label.toLowerCase().includes('rear')
-                        );
-                        const cameraId = backCamera ? backCamera.id : devices[0].id;
-
-                        html5QrCode.start(
-                            cameraId,
-                            {
-                                fps: 10,
-                                qrbox: { width: 250, height: 250 },
-                                aspectRatio: 1.0
-                            },
-                            qrCodeSuccessCallback,
-                            handleError
-                        ).then(() => {
-                            console.log('Camera started successfully');
-                            scannerRef.current = html5QrCode;
-                        }).catch(err => {
-                            console.error('Failed to start camera:', err);
-                            // Try the first camera if back camera fails
-                            if (backCamera && devices.length > 1) {
-                                html5QrCode.start(
-                                    devices[0].id,
-                                    {
-                                        fps: 10,
-                                        qrbox: { width: 250, height: 250 },
-                                        aspectRatio: 1.0
-                                    },
-                                    qrCodeSuccessCallback,
-                                    handleError
-                                ).then(() => {
-                                    console.log('Fallback camera started successfully');
-                                    scannerRef.current = html5QrCode;
-                                }).catch(fallbackErr => {
-                                    console.error('Fallback camera failed:', fallbackErr);
-                                    showModal('Failed to start camera. Please check camera permissions.', 'error', 'Camera Error');
-                                });
-                            } else {
-                                showModal('Failed to start camera. Please check camera permissions.', 'error', 'Camera Error');
-                            }
-                        });
-                    } else {
-                        showModal('No cameras found. Please connect a camera and try again.', 'error', 'Camera Error');
-                    }
-                }).catch(err => {
-                    console.error('Error getting cameras:', err);
-                    showModal('Error accessing camera. Please check camera permissions.', 'error', 'Camera Error');
-                });
-            } catch (error) {
-                console.error('Scanner initialization error:', error);
-                showModal('Failed to initialize scanner. Please try again.', 'error', 'Scanner Error');
-            }
-        }
-
-        return () => {
-            if (scannerRef.current) {
-                scannerRef.current.stop().catch(err => {
-                    console.error('Failed to stop scanner:', err);
-                });
-                scannerRef.current = null;
-            }
-        };
-    }, [scanning]);
-
-    const handleScan = (decodedText) => {
         try {
+            // Get the raw text from the QR code
+            const qrText = result?.text?.trim();
+
             // Basic validation
-            if (!decodedText) {
-                console.error('Empty QR code result');
+            if (!qrText) {
+                console.error('Empty QR code result:', result);
                 showModal('Invalid QR code. Please scan a valid reservation QR code.', 'error', 'Invalid QR Code');
                 return;
             }
 
             // Stop scanning and navigate
             setScanning(false);
-            navigate(`/verification/${decodedText.trim()}`);
+            navigate(`/verification/${qrText}`);
         } catch (error) {
             console.error('Scan processing error:', error);
             showModal('Error processing QR code. Please try again.', 'error', 'Scan Error');
@@ -298,7 +220,16 @@ export default function Verification() {
             {scanning ? (
                 <div className={styles.scannerContainer}>
                     <h1>Scan Reservation QR Code</h1>
-                    <div id="qr-reader" className={styles.scanner}></div>
+                    <div className={styles.scanner}>
+                        <QrReader
+                            constraints={{
+                                facingMode: 'environment'
+                            }}
+                            onResult={handleScan}
+                            onError={handleError}
+                            style={{ width: '100%' }}
+                        />
+                    </div>
                     {cameraError && (
                         <div className={styles.errorContainer}>
                             <p className={styles.errorMessage}>
