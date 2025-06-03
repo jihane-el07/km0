@@ -1,0 +1,7 @@
+ // const [cartItems, setCartItems] = useState([]);
+
+  // const handleAddToCart = (product) => {
+  //   setCartItems((prevItems) => [...prevItems, product]);
+  // };
+
+  {/* <Cart cartItems={cartItems} /> */}

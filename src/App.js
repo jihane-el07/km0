@@ -14,6 +14,7 @@ import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import BookMenu from './pages/Menu/book-menu';
 import Contact from './pages/Contact/Contact';
+import Cart from './pages/Patissier/Cart/Cart';
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -27,14 +28,13 @@ const ScrollToTop = () => {
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
-   const [cartCount, setCartCount] = useState(0);
+ const [cartCount, setCartCount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const addToCart = (price, quantity = 1) => {
     const priceNumber = parseFloat(price.replace(',', '.'));
     setCartCount(prev => prev + quantity);
     setTotalPrice(prev => parseFloat((prev + priceNumber * quantity).toFixed(2)));
   };
-
 
 
 
@@ -54,14 +54,14 @@ function App() {
   return (
     <div className="App">
       <ScrollToTop />
-      <IntroLayer />
-      {!hideNavAndFooter && <Nav cartCount={cartCount} totalPrice={totalPrice}  />}
+     {!hideNavAndFooter && <Nav cartCount={cartCount} totalPrice={totalPrice}  />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/Menu' element={<BookMenu />} />
         <Route path='/Event' element={<Events />} />
         <Route path='/Patisserie' element={<Patissier   addToCart={addToCart} cartCount={cartCount} totalPrice={totalPrice} />} />
-        <Route path='/:category' element={<Products />} />
+        <Route path='/:category' element={<Products addToCart={addToCart} />} />
+        <Route path='/Cart' element={<Cart />} />
         <Route path='/Book-Table' element={<Reservation />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
