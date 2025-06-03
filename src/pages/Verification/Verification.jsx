@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styles from './Verification.module.css';
 import { CheckCircle2, XCircle, AlertCircle, X, QrCode, LogOut } from 'lucide-react';
-import QrScanner from 'react-qr-scanner';
+import { Html5Qrcode, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 
 export default function Verification() {
     const { reservationId } = useParams();
@@ -14,6 +14,7 @@ export default function Verification() {
     const [modal, setModal] = useState({ show: false, message: '', type: '', title: '' });
     const [scanning, setScanning] = useState(!reservationId);
     const [cameraError, setCameraError] = useState(null);
+    const scannerRef = useRef(null);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -63,26 +64,119 @@ export default function Verification() {
         checkAuth();
     }, [navigate, reservationId]);
 
-    const handleScan = (result) => {
-        if (result && result.text) {
+    useEffect(() => {
+        let html5QrCode = null;
+        if (scanning && !scannerRef.current) {
             try {
-                navigate(`/verification/${result.text}`);
+                // Initialize the scanner with a smaller viewport
+                html5QrCode = new Html5Qrcode("qr-reader", {
+                    formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+                    verbose: false
+                });
+
+                const qrCodeSuccessCallback = (decodedText) => {
+                    handleScan(decodedText);
+                };
+
+                // First try to get available cameras
+                Html5Qrcode.getCameras().then(devices => {
+                    if (devices && devices.length) {
+                        // Try to use the back camera first, then fallback to any camera
+                        const backCamera = devices.find(device =>
+                            device.label.toLowerCase().includes('back') ||
+                            device.label.toLowerCase().includes('rear')
+                        );
+                        const cameraId = backCamera ? backCamera.id : devices[0].id;
+
+                        html5QrCode.start(
+                            cameraId,
+                            {
+                                fps: 10,
+                                qrbox: { width: 250, height: 250 },
+                                aspectRatio: 1.0
+                            },
+                            qrCodeSuccessCallback,
+                            handleError
+                        ).then(() => {
+                            console.log('Camera started successfully');
+                            scannerRef.current = html5QrCode;
+                        }).catch(err => {
+                            console.error('Failed to start camera:', err);
+                            // Try the first camera if back camera fails
+                            if (backCamera && devices.length > 1) {
+                                html5QrCode.start(
+                                    devices[0].id,
+                                    {
+                                        fps: 10,
+                                        qrbox: { width: 250, height: 250 },
+                                        aspectRatio: 1.0
+                                    },
+                                    qrCodeSuccessCallback,
+                                    handleError
+                                ).then(() => {
+                                    console.log('Fallback camera started successfully');
+                                    scannerRef.current = html5QrCode;
+                                }).catch(fallbackErr => {
+                                    console.error('Fallback camera failed:', fallbackErr);
+                                    showModal('Failed to start camera. Please check camera permissions.', 'error', 'Camera Error');
+                                });
+                            } else {
+                                showModal('Failed to start camera. Please check camera permissions.', 'error', 'Camera Error');
+                            }
+                        });
+                    } else {
+                        showModal('No cameras found. Please connect a camera and try again.', 'error', 'Camera Error');
+                    }
+                }).catch(err => {
+                    console.error('Error getting cameras:', err);
+                    showModal('Error accessing camera. Please check camera permissions.', 'error', 'Camera Error');
+                });
             } catch (error) {
-                console.error('Navigation error:', error);
-                showModal('Invalid QR code format', 'error', 'Scan Error');
+                console.error('Scanner initialization error:', error);
+                showModal('Failed to initialize scanner. Please try again.', 'error', 'Scanner Error');
             }
+        }
+
+        return () => {
+            if (scannerRef.current) {
+                scannerRef.current.stop().catch(err => {
+                    console.error('Failed to stop scanner:', err);
+                });
+                scannerRef.current = null;
+            }
+        };
+    }, [scanning]);
+
+    const handleScan = (decodedText) => {
+        try {
+            // Basic validation
+            if (!decodedText) {
+                console.error('Empty QR code result');
+                showModal('Invalid QR code. Please scan a valid reservation QR code.', 'error', 'Invalid QR Code');
+                return;
+            }
+
+            // Stop scanning and navigate
+            setScanning(false);
+            navigate(`/verification/${decodedText.trim()}`);
+        } catch (error) {
+            console.error('Scan processing error:', error);
+            showModal('Error processing QR code. Please try again.', 'error', 'Scan Error');
         }
     };
 
     const handleError = (error) => {
-        console.error('Scan error:', error);
+        console.error('Camera error:', error);
         setCameraError(error);
+
         if (error.name === 'NotAllowedError') {
-            showModal('Camera access denied. Please allow camera access to scan QR codes.', 'error', 'Camera Access Denied');
+            showModal('Camera access denied. Please allow camera access in your browser settings.', 'error', 'Camera Access Denied');
         } else if (error.name === 'NotFoundError') {
             showModal('No camera found. Please connect a camera and try again.', 'error', 'No Camera');
+        } else if (error.name === 'NotReadableError') {
+            showModal('Camera is in use by another application. Please close other apps using the camera.', 'error', 'Camera In Use');
         } else {
-            showModal('Error accessing camera. Please check camera permissions.', 'error', 'Camera Error');
+            showModal('Error accessing camera. Please check camera permissions and try again.', 'error', 'Camera Error');
         }
     };
 
@@ -204,22 +298,7 @@ export default function Verification() {
             {scanning ? (
                 <div className={styles.scannerContainer}>
                     <h1>Scan Reservation QR Code</h1>
-                    <div className={styles.scanner}>
-                        <QrScanner
-                            delay={300}
-                            onError={handleError}
-                            onScan={handleScan}
-                            style={{ width: '100%' }}
-                            constraints={{
-                                video: {
-                                    facingMode: 'user',
-                                    width: { min: 640, ideal: 1280, max: 1920 },
-                                    height: { min: 480, ideal: 720, max: 1080 }
-                                }
-                            }}
-                            legacyMode={false}
-                        />
-                    </div>
+                    <div id="qr-reader" className={styles.scanner}></div>
                     {cameraError && (
                         <div className={styles.errorContainer}>
                             <p className={styles.errorMessage}>
@@ -227,7 +306,9 @@ export default function Verification() {
                                     ? 'Camera access denied. Please allow camera access in your browser settings.'
                                     : cameraError.name === 'NotFoundError'
                                         ? 'No camera found. Please connect a camera and try again.'
-                                        : 'Error accessing camera. Please check camera permissions.'}
+                                        : cameraError.name === 'NotReadableError'
+                                            ? 'Camera is in use by another application. Please close other apps using the camera.'
+                                            : 'Error accessing camera. Please check camera permissions and try again.'}
                             </p>
                             <button
                                 onClick={() => window.location.reload()}
