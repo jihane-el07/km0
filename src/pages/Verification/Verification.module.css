@@ -34,14 +34,14 @@
     border-radius: 8px;
     overflow: hidden;
     position: relative;
-    min-height: 400px;
+    height: 400px;
+    background: #000;
 }
 
 .scanner video {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
-    display: block;
 }
 
 .scanner>div {
@@ -86,15 +86,12 @@
 
 #qr-reader {
     width: 100% !important;
-    max-width: 500px !important;
-    margin: 0 auto;
-    min-height: 400px;
+    height: 100% !important;
 }
 
 #qr-reader__scan_region {
     width: 100% !important;
-    height: 400px !important;
-    position: relative;
+    height: 100% !important;
 }
 
 #qr-reader__scan_region video {
@@ -693,5 +690,50 @@
 
     .scanner {
         max-height: 200px;
+    }
+}
+
+.errorContainer {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.errorMessage {
+    color: #dc2626;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.retryButton {
+    background: #630707;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.retryButton:hover {
+    background: #4a0505;
+}
+
+@media (max-width: 640px) {
+    .errorContainer {
+        padding: 0.75rem;
+    }
+
+    .errorMessage {
+        font-size: 0.8rem;
+    }
+
+    .retryButton {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
     }
 }
