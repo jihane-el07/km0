@@ -8,8 +8,7 @@ import { ShoppingBag } from "lucide-react"
 export default function Nav({ cartCount, totalPrice }) {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-
-
+  
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 120 || location.pathname !== '/';
@@ -51,13 +50,14 @@ export default function Nav({ cartCount, totalPrice }) {
         <ul className="navbar-nav d-flex flex-row right gap-5">
            {(location.pathname === '/Patisserie' || /^\/[^/]+$/.test(location.pathname)) && (
           <div className={styles.userActions}>
-            <a href="#cart" className={styles.cart}>
-              <span>{(totalPrice || 0).toFixed(2)} DH</span>
-              <div className={styles.cartIcon}>
-                <span className={styles.cartCount}>{cartCount}</span>
-                <ShoppingBag className={styles.Icon} />
-              </div>
-            </a>
+            <Link to='/Cart' className={styles.cart}>
+           <span>{(totalPrice || 0).toFixed(2)} DH</span>
+          <div className={styles.cartIcon}>
+          <span className={styles.cartCount}>{cartCount}</span>
+            <ShoppingBag className={styles.Icon} />
+          </div>
+        </Link>
+
           </div>
         )}
 
