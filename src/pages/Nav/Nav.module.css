@@ -30,14 +30,17 @@
 .navLink:hover.scrolled {
   color: #b06666;
 }
+
 .cart {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.cart span{
+
+.cart span {
   color: #333;
 }
+
 .cartIcon {
   position: relative;
   font-size: 18px;
@@ -56,7 +59,111 @@
   align-items: center;
   justify-content: center;
 }
-.Icon{
+
+.Icon {
   color: #333;
 }
 
+.logoutBtn {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+}
+
+.logoutBtn:hover {
+  background-color: rgba(176, 102, 102, 0.1);
+  transform: scale(1.1);
+}
+
+.logoutBtn:active {
+  transform: scale(0.95);
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  font-family: 'Lora', serif;
+}
+
+.modalContent {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.modalHeader h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.warningIcon {
+  color: #630707;
+}
+
+.modalContent p {
+  margin-bottom: 24px;
+  color: #666;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.cancelBtn {
+  padding: 8px 24px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  color: #666;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.cancelBtn:hover {
+  background: #f5f5f5;
+}
+
+.confirmBtn {
+  padding: 8px 24px;
+  border: none;
+  border-radius: 6px;
+  background: #630707;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.confirmBtn:hover {
+  background: #791010;
+}
