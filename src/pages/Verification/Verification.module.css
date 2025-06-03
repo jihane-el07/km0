@@ -35,12 +35,54 @@
     overflow: hidden;
     position: relative;
     min-height: 400px;
+    background: #000;
 }
 
 .scanner video {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
+    display: block;
+}
+
+.scanner>div {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative;
+}
+
+.scanner>div>video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.scanner>div>div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #630707;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.scanner>div>div::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    border: 2px solid #fff;
+    box-sizing: border-box;
 }
 
 #qr-reader {
@@ -328,6 +370,11 @@
 
     .scanner {
         min-height: 300px;
+    }
+
+    .scanner>div>div::before {
+        width: 200px;
+        height: 200px;
     }
 
     #qr-reader {
