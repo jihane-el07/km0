@@ -95,32 +95,38 @@ export default function Verification() {
     useEffect(() => {
         let html5QrCode = null;
         if (scanning && !scannerRef.current) {
-            try {
-                html5QrCode = new Html5Qrcode("qr-reader");
-                const qrCodeSuccessCallback = (decodedText) => {
-                    handleScan(decodedText);
-                };
+            // Wait for the next render cycle to ensure the DOM element exists
+            setTimeout(() => {
+                const qrReaderElement = document.getElementById('qr-reader');
+                if (qrReaderElement) {
+                    try {
+                        html5QrCode = new Html5Qrcode("qr-reader");
+                        const qrCodeSuccessCallback = (decodedText) => {
+                            handleScan(decodedText);
+                        };
 
-                html5QrCode.start(
-                    selectedCamera,
-                    {
-                        fps: 10,
-                        qrbox: { width: 250, height: 250 },
-                        aspectRatio: 1.0
-                    },
-                    qrCodeSuccessCallback,
-                    handleScanError
-                ).then(() => {
-                    console.log('Camera started successfully');
-                    scannerRef.current = html5QrCode;
-                }).catch(err => {
-                    console.error('Failed to start camera:', err);
-                    showModal('Failed to start camera. Please check camera permissions.', 'error', 'Camera Error');
-                });
-            } catch (error) {
-                console.error('Scanner initialization error:', error);
-                showModal('Failed to initialize scanner. Please try again.', 'error', 'Scanner Error');
-            }
+                        html5QrCode.start(
+                            selectedCamera,
+                            {
+                                fps: 10,
+                                qrbox: { width: 250, height: 250 },
+                                aspectRatio: 1.0
+                            },
+                            qrCodeSuccessCallback,
+                            handleScanError
+                        ).then(() => {
+                            console.log('Camera started successfully');
+                            scannerRef.current = html5QrCode;
+                        }).catch(err => {
+                            console.error('Failed to start camera:', err);
+                            showModal('Failed to start camera. Please check camera permissions.', 'error', 'Camera Error');
+                        });
+                    } catch (error) {
+                        console.error('Scanner initialization error:', error);
+                        showModal('Failed to initialize scanner. Please try again.', 'error', 'Scanner Error');
+                    }
+                }
+            }, 100); // Small delay to ensure DOM is ready
         }
 
         return () => {
