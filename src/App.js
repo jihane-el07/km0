@@ -15,8 +15,7 @@ import Login from './pages/Login/Login';
 import BookMenu from './pages/Menu/book-menu';
 import Contact from './pages/Contact/Contact';
 import Verification from './pages/Verification/Verification';
-import VerificationDetails from './pages/Verification/VerificationDetails';
-// import Cart from './pages/Patissier/Cart/Cart';
+import Cart from './pages/Patissier/Cart/Cart';
 
 // Protected Route for Verifiers
 const ProtectedVerifierRoute = ({ children }) => {
@@ -120,7 +119,6 @@ const PublicRoute = ({ children }) => {
   return children;
 };
 
-import Cart from './pages/Patissier/Cart/Cart';
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -202,7 +200,7 @@ function App() {
   }
 
   return (
-    <Router>
+    <div className="App">
       <ScrollToTop />
       {!isAuthenticated && <IntroLayer />}
       {!hideNavAndFooter && <Nav cartCount={cartCount} totalPrice={totalPrice} onLogout={handleLogout} isAuthenticated={isAuthenticated} />}
@@ -254,18 +252,28 @@ function App() {
         } />
         <Route path='/verification/:reservationId' element={
           <ProtectedVerifierRoute>
-            <VerificationDetails />
+            <Verification />
+          </ProtectedVerifierRoute>
+        } />
+        <Route path='/verify' element={
+          <ProtectedVerifierRoute>
+            <Verification />
+          </ProtectedVerifierRoute>
+        } />
+        <Route path='/verify/:reservationId' element={
+          <ProtectedVerifierRoute>
+            <Verification />
           </ProtectedVerifierRoute>
         } />
         <Route path='/:category' element={
           <PublicRoute>
-            <Products />
+            <Products addToCart={addToCart} />
           </PublicRoute>
         } />
       </Routes>
-      {!hideNavAndFooter && <Nav cartCount={cartCount} totalPrice={totalPrice} />}
-    </Router>
-  )
+      {!hideNavAndFooter && <Footer />}
+    </div>
+  );
 }
 
 export default App;
