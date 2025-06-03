@@ -18,8 +18,10 @@ export default function Verification() {
     const scannerInitialized = useRef(false);
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        navigate('/login');
+        if (window.confirm('Are you sure you want to logout?')) {
+            localStorage.removeItem('token');
+            navigate('/login');
+        }
     };
 
     useEffect(() => {
@@ -78,33 +80,33 @@ export default function Verification() {
         const getCameras = async () => {
             try {
                 // First get media access
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: { ideal: 'environment' } } 
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: { ideal: 'environment' } }
                 });
-                
+
                 // Get all devices
                 const devices = await navigator.mediaDevices.enumerateDevices();
                 const videoDevices = devices.filter(device => device.kind === 'videoinput');
-                
+
                 // Identify back camera
                 let backCamera = null;
                 videoDevices.forEach(device => {
-                    if (device.label.toLowerCase().includes('back') || 
+                    if (device.label.toLowerCase().includes('back') ||
                         device.label.toLowerCase().includes('rear') ||
                         device.label.toLowerCase().includes('environment')) {
                         backCamera = device;
                     }
                 });
-                
+
                 setCameras(videoDevices);
-                
+
                 // Prefer back camera if available
                 if (backCamera) {
                     setSelectedCamera(backCamera.deviceId);
                 } else if (videoDevices.length > 0) {
                     setSelectedCamera(videoDevices[0].deviceId);
                 }
-                
+
                 // Clean up stream
                 stream.getTracks().forEach(track => track.stop());
             } catch (error) {
@@ -180,7 +182,7 @@ export default function Verification() {
                 scannerRef.current = null;
                 scannerInitialized.current = false;
             }
-            
+
             // Navigate to the details page
             navigate(`/verification/${decodedText}`);
         } catch (error) {
@@ -190,13 +192,13 @@ export default function Verification() {
 
     const handleScanError = (errorMessage, error) => {
         // Ignore expected "not found" errors during scanning
-        const isIgnorableError = 
+        const isIgnorableError =
             error?.name === 'NotFoundException' ||
             error?.name === 'NoQRCodeFoundException' ||
             errorMessage.includes('No QR code found') ||
             errorMessage.includes('No MultiFormat Readers were able to detect the code') ||
             errorMessage.includes('QR code parse error');
-        
+
         if (!isIgnorableError) {
             console.error('Scan error:', errorMessage, error);
             showModal('Error scanning QR code. Please try again.', 'error', 'Scan Error');
@@ -205,7 +207,7 @@ export default function Verification() {
 
     const handleCameraChange = (event) => {
         setSelectedCamera(event.target.value);
-        
+
         // Reset scanner
         if (scannerRef.current) {
             scannerRef.current.stop().catch(console.error);
@@ -331,7 +333,7 @@ export default function Verification() {
                 </div>
             )}
 
-{scanning ? (
+            {scanning ? (
                 <div className={styles.scannerContainer}>
                     <h1>Scan Reservation QR Code</h1>
                     {cameras.length > 0 ? (
@@ -351,8 +353,8 @@ export default function Verification() {
                                 </select>
                             </div>
                             <div className={styles.scannerWrapper}>
-                                <div 
-                                    id="qr-reader" 
+                                <div
+                                    id="qr-reader"
                                     className={styles.scanner}
                                     style={{ minHeight: '300px' }}
                                 ></div>
@@ -366,7 +368,7 @@ export default function Verification() {
                         <div className={styles.cameraPermissionPrompt}>
                             <Camera size={48} />
                             <p>Camera permission required</p>
-                            <button 
+                            <button
                                 className={styles.enableCameraButton}
                                 onClick={() => window.location.reload()}
                             >
