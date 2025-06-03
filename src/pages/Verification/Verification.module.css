@@ -34,11 +34,12 @@
     border-radius: 8px;
     overflow: hidden;
     position: relative;
+    min-height: 400px;
 }
 
 .scanner video {
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
     object-fit: cover;
 }
 
@@ -46,16 +47,18 @@
     width: 100% !important;
     max-width: 500px !important;
     margin: 0 auto;
+    min-height: 400px;
 }
 
 #qr-reader__scan_region {
     width: 100% !important;
-    height: auto !important;
+    height: 400px !important;
+    position: relative;
 }
 
 #qr-reader__scan_region video {
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
     object-fit: cover;
 }
 
@@ -324,7 +327,15 @@
     }
 
     .scanner {
-        max-width: 100%;
+        min-height: 300px;
+    }
+
+    #qr-reader {
+        min-height: 300px;
+    }
+
+    #qr-reader__scan_region {
+        height: 300px !important;
     }
 
     .logoutButton {
