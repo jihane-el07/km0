@@ -102,14 +102,11 @@ export default function Verification() {
                     try {
                         scanner = new Html5QrcodeScanner('qr-reader', {
                             qrbox: {
-                                width: 300,
-                                height: 300,
+                                width: 500,
+                                height: 500,
                             },
                             fps: 10,
                             videoConstraints: {
-                                deviceId: selectedCamera,
-                                width: { ideal: 1280 },
-                                height: { ideal: 720 },
                                 facingMode: "environment"
                             },
                             aspectRatio: 1.0,
@@ -132,7 +129,7 @@ export default function Verification() {
                         showModal('Failed to initialize scanner. Please try again.', 'error', 'Scanner Error');
                     }
                 }
-            }, 500);
+            }, 100);
         }
 
         return () => {
@@ -142,7 +139,7 @@ export default function Verification() {
                 scannerRef.current = null;
             }
         };
-    }, [scanning, selectedCamera]);
+    }, [scanning]);
 
     const handleScan = (decodedText) => {
         try {
