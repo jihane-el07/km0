@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styles from './Verification.module.css';
 import { CheckCircle2, XCircle, AlertCircle, X, QrCode, LogOut } from 'lucide-react';
-import { QrReader } from 'react-qr-reader';
+import { BrowserQRCodeReader } from '@zxing/browser';
+import { BarcodeFormat } from '@zxing/library';
 
 export default function Verification() {
     const { reservationId } = useParams();
@@ -14,7 +15,8 @@ export default function Verification() {
     const [modal, setModal] = useState({ show: false, message: '', type: '', title: '' });
     const [scanning, setScanning] = useState(!reservationId);
     const [cameraError, setCameraError] = useState(null);
-    const scannerRef = useRef(null);
+    const videoRef = useRef(null);
+    const codeReader = useRef(new BrowserQRCodeReader());
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -64,12 +66,57 @@ export default function Verification() {
         checkAuth();
     }, [navigate, reservationId]);
 
-    const handleScan = (result) => {
-        if (!result) return;
+    useEffect(() => {
+        if (scanning && videoRef.current) {
+            const startScanning = async () => {
+                try {
+                    const videoInputDevices = await BrowserQRCodeReader.listVideoInputDevices();
+                    const selectedDeviceId = videoInputDevices[0].deviceId;
 
+                    await codeReader.current.decodeFromVideoDevice(
+                        selectedDeviceId,
+                        videoRef.current,
+                        (result, err) => {
+                            if (result) {
+                                handleScan(result);
+                            }
+                            if (err && !(err instanceof Error)) {
+                                handleError(err);
+                            }
+                        }
+                    );
+                } catch (error) {
+                    console.error('Scanner initialization error:', error);
+                    handleError(error);
+                }
+            };
+
+            startScanning();
+        }
+
+        return () => {
+            if (codeReader.current) {
+                try {
+                    // Stop the video stream
+                    if (videoRef.current && videoRef.current.srcObject) {
+                        const tracks = videoRef.current.srcObject.getTracks();
+                        tracks.forEach(track => track.stop());
+                    }
+                    // Clear the video element
+                    if (videoRef.current) {
+                        videoRef.current.srcObject = null;
+                    }
+                } catch (error) {
+                    console.error('Error cleaning up scanner:', error);
+                }
+            }
+        };
+    }, [scanning]);
+
+    const handleScan = (result) => {
         try {
             // Get the raw text from the QR code
-            const qrText = result?.text?.trim();
+            const qrText = result?.getText()?.trim();
 
             // Basic validation
             if (!qrText) {
@@ -221,14 +268,7 @@ export default function Verification() {
                 <div className={styles.scannerContainer}>
                     <h1>Scan Reservation QR Code</h1>
                     <div className={styles.scanner}>
-                        <QrReader
-                            constraints={{
-                                facingMode: 'environment'
-                            }}
-                            onResult={handleScan}
-                            onError={handleError}
-                            style={{ width: '100%' }}
-                        />
+                        <video ref={videoRef} style={{ width: '100%', height: '100%' }} />
                     </div>
                     {cameraError && (
                         <div className={styles.errorContainer}>
