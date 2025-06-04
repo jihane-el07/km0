@@ -20,7 +20,7 @@ const Breadcrumb = () => {
     <nav className={styles.breadcrumb}>
       <div className={styles.container}>
         <Link to='/Patisserie' className={styles.breadcrumbLink}>
-          Home
+        Patisserie
         </Link>
         <ChevronRight className={styles.separator} />
         <span className={styles.breadcrumbCurrent}>{category}</span>

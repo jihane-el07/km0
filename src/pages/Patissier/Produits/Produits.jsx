@@ -9,7 +9,7 @@ export default function Produits() {
       image: "./images/prd.png",
       title: "BAKERY",
       name: "Boulangerie",
-      link: "/Bakery",
+      link: "/Patisserie/Bakery",
       description:
         "Discover our pure sourdough breads—delicious and full of flavor for all your cravings. The perfect companion to your everyday meals.",
     },
@@ -17,7 +17,7 @@ export default function Produits() {
       image: "./images/prd1.png",
       title: "VIENNOISERIE",
       name: "Viennoiserie",
-      link: "/Viennoiserie",
+      link: "/Patisserie/Viennoiserie",
       description:
         "Pure butter, soft and light, with generous filling. Perfect for your breakfasts, snacks, and sweet breaks.",
     },
@@ -25,7 +25,7 @@ export default function Produits() {
       image: "./images/prd2.png",
       title: "PASTRY",
       name: "Pastry ",
-      link: "/Pastry",
+      link: "/Patisserie/Pastry",
       description:
         "Crunchy, creamy, crispy, sweet, and full of indulgence... to enjoy with family, friends, or on your own.",
     },
@@ -33,7 +33,7 @@ export default function Produits() {
       image: "./images/prd3.png",
       title: "ICE CREAM",
       name: "Glaces",
-      link: "/Ice-Creams",
+      link: "/Patisserie/Ice-Creams",
       description:
         "Taste our signature artisanal ice creams — irresistibly smooth, incredibly flavorful, and endlessly creamy.",
     },
@@ -41,7 +41,7 @@ export default function Produits() {
       image: "./images/prd4.png",
       title: "SAVOURY",
       name: "Savory",
-      link: "/Savory",
+      link: "/Patisserie/Savory",
       description:
         "Discover our selection of crispy, flavorful savoury treats — perfect to serve and share with your guests.",
     },
@@ -49,7 +49,7 @@ export default function Produits() {
       image: "./images/prd5.png",
       title: "GOURMET CREATIONS",
       name: "Gourmet Creations",
-      link: "/Gourmandes",
+      link: "/Patisserie/Gourmandes",
       description:
 "Explore our exquisite gourmet creations—crafted to inspire your culinary flair and elevate every dish with rich flavors and premium quality."    },
   ];

@@ -1,52 +1,50 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from "react-router-dom";
 import styles from './BestSellers.module.css';
 
 const BestSellers = ({ addToCart }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [cardWidth, setCardWidth] = useState(0);
-  const [cardsPerView, setCardsPerView] = useState(1);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const containerRef = useRef(null);
-
-  const products = [
-    { id: 1, name: 'Churros', quantity: '30', image: '/images/churros.jpg', price: '29,00' },
-    { id: 2, name: 'Individual Waffle', quantity: '4', image: '/images/gaufre.jpg', price: '39,00' },
-    { id: 3, name: 'Mini Chocolate Bread', quantity: '10', image: '/images/pain-chocolat.jpg', price: '46,00' },
-    { id: 4, name: 'Plain Sandwich Bread 120g', quantity: '5', image: '/images/pain-sandwich.jpg', price: '15,00' },
-    { id: 5, name: 'Mini Swiss Bread – 10 units 30g', quantity: '10', image: '/images/painswiss.jpg', price: '48,00' },
-    { id: 6, name: 'Mini Moroccan Barley Bread 50g', quantity: '12', image: '/images/painmaroc.jpg', price: '26,00' },
-  ];
-
-  const nextSlide = () => {
-    if (currentIndex < products.length - cardsPerView) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
-
-  const prevSlide = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const handleResize = () => {
-      if (containerRef.current) {
-        const container = containerRef.current.querySelector(`.${styles.productCard}`);
-        if (container) {
-          const cardW = container.offsetWidth + 16; // 16px for margin
-          const viewportWidth = containerRef.current.offsetWidth;
-          const visibleCards = Math.floor(viewportWidth / cardW);
-          setCardWidth(cardW);
-          setCardsPerView(Math.max(1, visibleCards)); // Ensure at least 1 card is visible
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('https://km0-api.vercel.app/patisserie');
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
         }
+        const data = await response.json();
+
+        // Group products by category and take one from each
+        const categories = {};
+        data.forEach(product => {
+          if (!categories[product.categorie]) {
+            categories[product.categorie] = product;
+          }
+        });
+
+        // Convert to array and sort by category
+        const bestSellers = Object.values(categories).sort((a, b) =>
+          a.categorie.localeCompare(b.categorie)
+        );
+
+        setProducts(bestSellers);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError('Failed to load products. Please try again later.');
+      } finally {
+        setLoading(false);
       }
     };
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    fetchProducts();
   }, []);
 
   const openProductDetails = (product) => {
@@ -66,10 +64,22 @@ const BestSellers = ({ addToCart }) => {
     if (quantity > 1) setQuantity((prev) => prev - 1);
   };
 
-  const confirmAddToCart = () => {
-    alert(`Added ${quantity} ${selectedProduct.name} to cart`);
-    closeProductDetails();
+  const handleAddToCart = (product) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setShowLoginModal(true);
+      return;
+    }
+    openProductDetails(product);
   };
+
+  if (loading) {
+    return <div className={styles.loading}>Loading best sellers...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
 
   return (
     <div className={styles.bestSellers}>
@@ -83,64 +93,53 @@ const BestSellers = ({ addToCart }) => {
         <div className={styles.line}></div>
       </div>
 
-      <div className={styles.carouselWrapper} ref={containerRef}>
-        <button 
-          className={styles.navButton} 
-          onClick={prevSlide} 
-          disabled={currentIndex === 0}
-          aria-label="Previous products"
-        >
-          &lt;
-        </button>
-
-        <div className={styles.carouselViewport}>
-          <div
-            className={styles.carouselTrack}
-            style={{
-              transform: `translateX(-${currentIndex * cardWidth}px)`,
-              transition: 'transform 0.3s ease',
-            }}
-          >
-            {products.map((product) => (
-              <div key={product.id} className={styles.productCard}>
-                <img 
-                  src={product.image} 
-                  alt={product.name} 
-                  className={styles.productImage} 
-                  loading="lazy"
-                />
-                <div className={styles.productInfo}>
-                  <h3>{product.name}</h3>
-                  <p className={styles.units}>{product.quantity} units</p>
-                  <p className={styles.prix}>{product.price} DH</p>
-                  <button 
-                    className={styles.commande} 
-                    onClick={() => openProductDetails(product)}
-                    aria-label={`Add ${product.name} to cart`}
-                  >
-                    Add to cart
-                  </button>
-                </div>
-              </div>
-            ))}
+      <div className={styles.productsGrid}>
+        {products.map((product) => (
+          <div key={product._id} className={styles.productCard}>
+            <img
+              src={product.image}
+              alt={product.name}
+              className={styles.productImage}
+              loading="lazy"
+            />
+            <div className={styles.productInfo}>
+              <h3>{product.name}</h3>
+              <p className={styles.units}>{product.quantity}</p>
+              <p className={styles.prix}>{product.price.toString()} DH</p>
+              <button
+                className={styles.commande}
+                onClick={() => handleAddToCart(product)}
+                aria-label={`Add ${product.name} to cart`}
+              >
+                Add to cart
+              </button>
+            </div>
           </div>
-        </div>
-
-        <button
-          className={styles.navButton}
-          onClick={nextSlide}
-          disabled={currentIndex >= products.length - cardsPerView}
-          aria-label="Next products"
-        >
-          &gt;
-        </button>
+        ))}
       </div>
 
+      {/* Login Modal */}
+      {showLoginModal && (
+        <div className={styles.modalOverlay} onClick={() => setShowLoginModal(false)}>
+          <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+            <button className={styles.closeModal} onClick={() => setShowLoginModal(false)}>×</button>
+            <div className={styles.modalBody}>
+              <h2>Login Required</h2>
+              <p>Please login to add items to your cart.</p>
+              <Link to="/login" className={styles.loginButton} onClick={() => setShowLoginModal(false)}>
+                Go to Login
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Product Details Modal */}
       {selectedProduct && (
         <div className={styles.productModalOverlay} onClick={closeProductDetails}>
           <div className={styles.productModal} onClick={(e) => e.stopPropagation()}>
-            <button 
-              className={styles.closeModal} 
+            <button
+              className={styles.closeModal}
               onClick={closeProductDetails}
               aria-label="Close product details"
             >
@@ -148,30 +147,30 @@ const BestSellers = ({ addToCart }) => {
             </button>
             <div className={styles.productModalContent}>
               <div className={styles.productModalImage}>
-                <img 
-                  src={selectedProduct.image} 
-                  alt={selectedProduct.name} 
+                <img
+                  src={selectedProduct.image}
+                  alt={selectedProduct.name}
                   loading="lazy"
                 />
               </div>
               <div className={styles.productModalDetails}>
                 <h2 className={styles.productModalName}>{selectedProduct.name}</h2>
-                <p className={styles.productModalPrice}>{selectedProduct.price} DH</p>
+                <p className={styles.productModalPrice}>{selectedProduct.price.toString()} DH</p>
                 <div className={styles.productModalDivider}></div>
                 <p className={styles.productModalDescription}>{selectedProduct.name}</p>
 
                 <div className={styles.productModalActions}>
                   <div className={styles.quantitySelector}>
-                    <button 
-                      className={styles.quantityBtn} 
+                    <button
+                      className={styles.quantityBtn}
                       onClick={decrementQuantity}
                       aria-label="Decrease quantity"
                     >
                       -
                     </button>
                     <span className={styles.quantityValue}>{quantity}</span>
-                    <button 
-                      className={styles.quantityBtn} 
+                    <button
+                      className={styles.quantityBtn}
                       onClick={incrementQuantity}
                       aria-label="Increase quantity"
                     >
@@ -179,25 +178,19 @@ const BestSellers = ({ addToCart }) => {
                     </button>
                   </div>
 
-                  {/* <button 
-                    className={styles.addToCartBtn} 
-                    onClick={confirmAddToCart}
-                    aria-label="Add to cart"
+                  <button
+                    className={styles.addToCartBtn}
+                    onClick={() => {
+                      const productToAdd = {
+                        ...selectedProduct,
+                        price: selectedProduct.price.toString()
+                      };
+                      addToCart(productToAdd, quantity);
+                      closeProductDetails();
+                    }}
                   >
-                    <span className={styles.cartIcon}>🛒</span>
                     Ajouter au panier
-                  </button> */}
-            <button
-              className={styles.addToCartBtn}
-              onClick={() => {
-                addToCart(selectedProduct.price, quantity);
-                closeProductDetails();
-              }}
-            >
-              Ajouter au panier
-            </button>
-
-
+                  </button>
                 </div>
               </div>
             </div>

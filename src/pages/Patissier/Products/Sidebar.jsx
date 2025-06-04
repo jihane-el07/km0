@@ -9,12 +9,12 @@ const Sidebar = () => {
   const navigate = useNavigate()
 
   const categories = [
-    { name: "Bakery", link: "/Bakery" },
-    { name: "Viennoiserie", link: "/Viennoiserie" },
-    { name: "Pastry ", link: "/Pastry " },
-    { name: " Ice Creams ", link: "/Ice-Creams " },
-    { name: "Savory", link: "/Savory" },
-    { name: "Gourmet Creations", link: "/Gourmandes" },
+    { name: "Bakery", link: "/Patisserie/Bakery" },
+    { name: "Viennoiserie", link: "/Patisserie/Viennoiserie" },
+    { name: "Pastry ", link: "/Patisserie/Pastry " },
+    { name: " Ice Creams ", link: "/Patisserie/Ice-Creams " },
+    { name: "Savory", link: "/Patisserie/Savory" },
+    { name: "Gourmet Creations", link: "/Patisserie/Gourmandes" },
   ]
 const handleCategoryClick = (category) => {
     navigate(category.link)

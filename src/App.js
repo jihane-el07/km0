@@ -16,6 +16,7 @@ import BookMenu from './pages/Menu/book-menu';
 import Contact from './pages/Contact/Contact';
 import Verification from './pages/Verification/Verification';
 import Cart from './pages/Patissier/Cart/Cart';
+import NotFound from './pages/NotFound/NotFound';
 
 // Protected Route for Verifiers
 const ProtectedVerifierRoute = ({ children }) => {
@@ -132,16 +133,61 @@ const ScrollToTop = () => {
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [cart, setCart] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [showCartModal, setShowCartModal] = useState(false);
 
-  const addToCart = (price, quantity = 1) => {
-    const priceNumber = parseFloat(price.replace(',', '.'));
-    setCartCount(prev => prev + quantity);
-    setTotalPrice(prev => parseFloat((prev + priceNumber * quantity).toFixed(2)));
+  const addToCart = (product, quantity) => {
+    const price = typeof product.price === 'number' ? product.price.toString() : product.price;
+    const formattedPrice = price.replace(',', '.');
+    const numericPrice = parseFloat(formattedPrice);
+
+    const newItem = {
+      id: product._id,
+      name: product.name,
+      price: numericPrice,
+      quantity: quantity,
+      image: product.image
+    };
+
+    setCart(prevCart => {
+      const existingItem = prevCart.find(item => item.id === newItem.id);
+      if (existingItem) {
+        return prevCart.map(item =>
+          item.id === newItem.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      }
+      return [...prevCart, newItem];
+    });
   };
+
+  const removeFromCart = (itemId) => {
+    setCart(prevCart => prevCart.filter(item => item.id !== itemId));
+  };
+
+  const updateQuantity = (itemId, newQuantity) => {
+    if (newQuantity < 1) return;
+    setCart(prevCart =>
+      prevCart.map(item =>
+        item.id === itemId
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+    );
+  };
+
+  // Update cart count and total price whenever cart changes
+  useEffect(() => {
+    const newCount = cart.reduce((total, item) => total + item.quantity, 0);
+    const newTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    setCartCount(newCount);
+    setTotalPrice(parseFloat(newTotal.toFixed(2)));
+  }, [cart]);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -203,7 +249,20 @@ function App() {
     <div className="App">
       <ScrollToTop />
       {!isAuthenticated && <IntroLayer />}
-      {!hideNavAndFooter && <Nav cartCount={cartCount} totalPrice={totalPrice} onLogout={handleLogout} isAuthenticated={isAuthenticated} />}
+      {!hideNavAndFooter && (
+        <Nav
+          cartCount={cartCount}
+          totalPrice={totalPrice}
+          onLogout={handleLogout}
+          isAuthenticated={isAuthenticated}
+          cart={cart}
+          setCart={setCart}
+          showCartModal={showCartModal}
+          setShowCartModal={setShowCartModal}
+          removeFromCart={removeFromCart}
+          updateQuantity={updateQuantity}
+        />
+      )}
       <Routes>
         <Route path='/' element={
           <PublicRoute>
@@ -265,11 +324,13 @@ function App() {
             <Verification />
           </ProtectedVerifierRoute>
         } />
-        <Route path='/:category' element={
+        <Route path='/Patisserie/:category' element={
           <PublicRoute>
             <Products addToCart={addToCart} />
           </PublicRoute>
         } />
+        {/* Catch all route for unmatched paths - must be last */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       {!hideNavAndFooter && <Footer />}
     </div>

@@ -3,7 +3,7 @@
   padding: 2rem;
   margin-bottom: 10%;
   font-family: 'Lora', serif;
-  
+
 }
 
 .hero {
@@ -159,6 +159,7 @@
   transition: all 0.3s ease;
   display: none;
 }
+
 .productCard:hover .commande {
   display: block;
 }
@@ -233,7 +234,7 @@
 .productModalPrice {
   font-size: 24px;
   font-weight: 600;
-  color:#b06666;
+  color: #b06666;
   margin-bottom: 20px;
 }
 
@@ -290,7 +291,7 @@
 
 .addToCartBtn {
   flex: 1;
-  background-color:#b06666;
+  background-color: #b06666;
   color: white;
   border: none;
   border-radius: 5px;
@@ -306,7 +307,7 @@
 }
 
 .addToCartBtn:hover {
-  background-color:#c06f6f;
+  background-color: #c06f6f;
 }
 
 .cartIcon {
@@ -341,6 +342,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -361,7 +363,7 @@
   .productModalImage img {
     border-radius: 10px 10px 0 0;
     min-height: 300px;
-  max-height: 300px;
+    max-height: 300px;
   }
 
   .productModal {
@@ -394,4 +396,88 @@
   .productCard {
     min-width: 200px;
   }
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modalBody {
+  text-align: center;
+  font-family: 'Lora', serif;
+
+}
+
+.modalBody h2 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.modalBody p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.loginButton {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: #4a0505;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.loginButton:hover {
+  background-color:#600d0d;
+}
+
+.closeModal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #666;
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+}
+
+.closeModal:hover {
+  color: #333;
 }

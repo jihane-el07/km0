@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import styles from "./ProductCategory.module.css";
-import products from "../../../data/products.json";
 
 const ProductCategory = ({ addToCart }) => {
   const [viewMode, setViewMode] = useState("grid");
@@ -9,6 +8,39 @@ const ProductCategory = ({ addToCart }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('https://km0-api.vercel.app/patisserie');
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+
+        // Filter products by category
+        const matched = data.filter(
+          (product) => product.categorie.toLowerCase() === category.toLowerCase()
+        );
+        setFilteredProducts(matched);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError('Failed to load products. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (category) {
+      fetchProducts();
+    }
+  }, [category]);
 
   const openProductDetails = (product) => {
     setSelectedProduct(product);
@@ -26,16 +58,24 @@ const ProductCategory = ({ addToCart }) => {
     if (quantity > 1) setQuantity((prev) => prev - 1);
   };
 
-  useEffect(() => {
-    if (category) {
-      const matched = products.filter(
-        (product) => product.categorie.toLowerCase() === category.toLowerCase()
-      );
-      setFilteredProducts(matched);
-    }
-  }, [category]);
-
   const heroImage = filteredProducts[0]?.imageH || "/images/fallback.jpg";
+
+  const handleAddToCart = (product) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setShowLoginModal(true);
+      return;
+    }
+    openProductDetails(product);
+  };
+
+  if (loading) {
+    return <div className={styles.loading}>Loading products...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
 
   return (
     <div className={styles.productGrid}>
@@ -48,7 +88,7 @@ const ProductCategory = ({ addToCart }) => {
       <div className={`${styles.products} ${styles[viewMode]}`}>
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
-            <div key={product.id} className={styles.productCard}>
+            <div key={product._id} className={styles.productCard}>
               <div className={styles.productImage}>
                 <img src={product.image} alt={product.name} />
               </div>
@@ -61,7 +101,7 @@ const ProductCategory = ({ addToCart }) => {
                 </div>
                 <button
                   className={styles.commande}
-                  onClick={() => openProductDetails(product)}
+                  onClick={() => handleAddToCart(product)}
                 >
                   Add to cart
                 </button>
@@ -73,6 +113,23 @@ const ProductCategory = ({ addToCart }) => {
         )}
       </div>
 
+      {/* Login Modal */}
+      {showLoginModal && (
+        <div className={styles.modalOverlay} onClick={() => setShowLoginModal(false)}>
+          <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+            <button className={styles.closeModal} onClick={() => setShowLoginModal(false)}>×</button>
+            <div className={styles.modalBody}>
+              <h2>Login Required</h2>
+              <p>Please login to add items to your cart.</p>
+              <Link to="/login" className={styles.loginButton} onClick={() => setShowLoginModal(false)}>
+                Go to Login
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Product Details Modal */}
       {selectedProduct && (
         <div
           className={styles.productModalOverlay}
@@ -120,17 +177,19 @@ const ProductCategory = ({ addToCart }) => {
                       +
                     </button>
                   </div>
-                 <button
-                  className={styles.addToCartBtn}
-                  onClick={() => {
-                    addToCart(selectedProduct, quantity); // pass entire product, not just price
-                    closeProductDetails();
-                  }}
-                >
-                  Add to cart
-                </button>
-
-
+                  <button
+                    className={styles.addToCartBtn}
+                    onClick={() => {
+                      const productToAdd = {
+                        ...selectedProduct,
+                        price: selectedProduct.price.toString()
+                      };
+                      addToCart(productToAdd, quantity);
+                      closeProductDetails();
+                    }}
+                  >
+                    Add to cart
+                  </button>
                 </div>
               </div>
             </div>
