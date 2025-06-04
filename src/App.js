@@ -17,6 +17,7 @@ import Contact from './pages/Contact/Contact';
 import Verification from './pages/Verification/Verification';
 import Cart from './pages/Patissier/Cart/Cart';
 import NotFound from './pages/NotFound/NotFound';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 // Protected Route for Verifiers
 const ProtectedVerifierRoute = ({ children }) => {
@@ -69,9 +70,61 @@ const ProtectedVerifierRoute = ({ children }) => {
   return children;
 };
 
-// Public Route - Only accessible when not logged in
+// Protected Route for Admin
+const ProtectedAdminRoute = ({ children }) => {
+  const [isAdmin, setIsAdmin] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          setIsAdmin(false);
+          setLoading(false);
+          return;
+        }
+
+        const response = await fetch('https://km0-api.vercel.app/auth/profile', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) {
+          setIsAdmin(false);
+          setLoading(false);
+          return;
+        }
+
+        const userData = await response.json();
+        setIsAdmin(userData.role === 'admin');
+      } catch (error) {
+        console.error('Auth check error:', error);
+        setIsAdmin(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAdmin();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!isAdmin) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+};
+
+// Public Route - Only accessible when not logged in and not admin
 const PublicRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -80,6 +133,7 @@ const PublicRoute = ({ children }) => {
         const token = localStorage.getItem('token');
         if (!token) {
           setIsAuthenticated(false);
+          setIsAdmin(false);
           setLoading(false);
           return;
         }
@@ -92,15 +146,18 @@ const PublicRoute = ({ children }) => {
 
         if (!response.ok) {
           setIsAuthenticated(false);
+          setIsAdmin(false);
           setLoading(false);
           return;
         }
 
         const userData = await response.json();
         setIsAuthenticated(userData.role === 'verifier');
+        setIsAdmin(userData.role === 'admin');
       } catch (error) {
         console.error('Auth check error:', error);
         setIsAuthenticated(false);
+        setIsAdmin(false);
       } finally {
         setLoading(false);
       }
@@ -115,6 +172,10 @@ const PublicRoute = ({ children }) => {
 
   if (isAuthenticated) {
     return <Navigate to="/verification" replace />;
+  }
+
+  if (isAdmin) {
+    return <Navigate to="/dashboard" replace />;
   }
 
   return children;
@@ -137,6 +198,7 @@ function App() {
   const [cartCount, setCartCount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showCartModal, setShowCartModal] = useState(false);
 
@@ -195,6 +257,7 @@ function App() {
         const token = localStorage.getItem('token');
         if (!token) {
           setIsAuthenticated(false);
+          setIsAdmin(false);
           setIsLoading(false);
           return;
         }
@@ -207,21 +270,30 @@ function App() {
 
         if (!response.ok) {
           setIsAuthenticated(false);
+          setIsAdmin(false);
           setIsLoading(false);
           return;
         }
 
         const userData = await response.json();
         const isVerifier = userData.role === 'verifier';
+        const isAdminUser = userData.role === 'admin';
         setIsAuthenticated(isVerifier);
+        setIsAdmin(isAdminUser);
 
         // If user is a verifier and not already on verification page, redirect them
         if (isVerifier && !location.pathname.startsWith('/verification')) {
           navigate('/verification');
         }
+
+        // If user is admin and not on dashboard, redirect them
+        if (isAdminUser && location.pathname !== '/dashboard') {
+          navigate('/dashboard');
+        }
       } catch (error) {
         console.error('Auth check error:', error);
         setIsAuthenticated(false);
+        setIsAdmin(false);
       } finally {
         setIsLoading(false);
       }
@@ -233,16 +305,18 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsAuthenticated(false);
+    setIsAdmin(false);
     navigate('/login');
   };
 
-  // Hide Nav & Footer on login, signup pages, and when authenticated
+  // Hide Nav & Footer on login, signup pages, when authenticated, or when admin
   const hideNavAndFooter = location.pathname === '/login' ||
     location.pathname === '/signup' ||
-    isAuthenticated;
+    isAuthenticated ||
+    isAdmin;
 
   if (isLoading) {
-    return null; // Don't render anything while checking authentication
+    return null;
   }
 
   return (
@@ -328,6 +402,12 @@ function App() {
           <PublicRoute>
             <Products addToCart={addToCart} />
           </PublicRoute>
+        } />
+        {/* Dashboard route - protected and no nav/footer */}
+        <Route path="/dashboard" element={
+          <ProtectedAdminRoute>
+            <Dashboard />
+          </ProtectedAdminRoute>
         } />
         {/* Catch all route for unmatched paths - must be last */}
         <Route path="*" element={<NotFound />} />
