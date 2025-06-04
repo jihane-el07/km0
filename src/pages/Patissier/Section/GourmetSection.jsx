@@ -7,7 +7,7 @@ function GourmetSection() {
         <div className={styles.grid}>
           <div className={styles.imageContainer}>
             <img
-              src="/images/section.png"
+              src="/images/section.PNG"
               alt="Assortment of gourmet cakes including a strawberry tart, chocolate cake, and fruit-topped pastry"
               className={styles.image}
             />

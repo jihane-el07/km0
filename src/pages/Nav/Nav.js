@@ -129,7 +129,7 @@ export default function Nav({ cartCount, totalPrice, onLogout, isAuthenticated, 
 
           {/* Right Side Links */}
           <ul className="navbar-nav d-flex flex-row right gap-4 align-items-center">
-            {(location.pathname === '/Patisserie' || /^\/[^/]+$/.test(location.pathname)) && (
+            {(location.pathname.startsWith('/Patisserie') || location.pathname === '/') && (
               <li className="nav-item">
                 <button onClick={() => setShowCartModal(true)} className={styles.cart}>
                   <span>{(totalPrice || 0).toFixed(2)} DH</span>
